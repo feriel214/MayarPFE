@@ -1,0 +1,288 @@
+<!--- here testing code -->
+<div class="breadcome-area" style="margin-top: 6%; height: 70px">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="breadcome-list single-page-breadcome">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <div class="breadcome-heading">
+                <form role="search" class="sr-input-func">
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    class="search-int form-control"
+                  />
+                  <a href="#"><i class="fa fa-search"></i></a>
+                </form>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <ul class="breadcome-menu">
+                <li>
+                  <span class="bread-blod">Acceuil / Tableau De Bord </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="breadcome-area" style="margin-top: 2%; height: 70px">
+  <!-- Header breadcrumb area -->
+</div>
+
+<div class="single-pro-review-area mt-t-30 mg-b-15">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="product-payment-inner-st">
+          <div id="myTabContent" class="tab-content custom-product-edit">
+            <div
+              class="product-tab-list tab-pane fade active in"
+              id="description"
+            >
+              <h4 style="font-size: 20px; margin-bottom: 20px">Rapport Site</h4>
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="review-content-section">
+                    <div id="dropzone1" class="pro-ad">
+                      <!-- Original Form -->
+                      <div>
+                        <div class="form-group col-lg-3">
+                          <label for="region">Région</label>
+                          <select
+                            id="region"
+                            class="form-control"
+                            [(ngModel)]="site.region"
+                            (change)="updateDelegations()"
+                          >
+                            <option
+                              *ngFor="let region of regions"
+                              [value]="region"
+                            >
+                              {{ region }}
+                            </option>
+                          </select>
+                        </div>
+
+                        <div class="form-group col-lg-3">
+                          <label for="delegation">Délégation</label>
+                          <select
+                            id="delegation"
+                            class="form-control"
+                            [(ngModel)]="site.delegotion"
+                            (change)="updateFournisseur()"
+                          >
+                            <option
+                              *ngFor="let delegation of delegotions"
+                              [value]="delegation"
+                            >
+                              {{ delegation }}
+                            </option>
+                          </select>
+                        </div>
+
+                        <div class="form-group col-lg-3">
+                          <label for="fournisseur">Fournisseur</label>
+                          <select
+                            id="fournisseur"
+                            class="form-control"
+                            [(ngModel)]="site.fournisseur"
+                            (ngModelChange)="updateSites()"
+                          >
+                            <option
+                              *ngFor="let fournisseur of fournisseurs"
+                              [value]="fournisseur"
+                            >
+                              {{ fournisseur }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div>
+                        <div class="form-group col-lg-3">
+                          <label for="sites">Sites</label>
+                          <select
+                            id="sites"
+                            class="form-control"
+                            [(ngModel)]="site.nomsite"
+                            (ngModelChange)="storecodesite($event)"
+                          >
+                            <option
+                              *ngFor="let site of sites"
+                              [value]="site.codesite"
+                            >
+                              {{ site.nomsite }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <!-- Table to display site data -->
+                      <div
+                        class="container-fluid"
+                        *ngIf="siteData && show == 'A'"
+                      >
+                        <h4 style="font-size: 20px; margin-bottom: 20px">
+                          Informations Site
+                        </h4>
+                        <!-- <table class="table table-striped table-bordered">
+                          <thead class="thead-dark">
+                            <tr>
+                              <th>idSite</th>
+                              <th>nomsite</th>
+                              <th>region</th>
+                              <th>delegation</th>
+                              <th>secteur</th>
+                              <th>x</th>
+                              <th>y</th>
+                              <th>fournisseur</th>
+                              <th>antenne</th>
+                              <th>alimentation</th>
+                              <th>acces</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let site of siteData">
+                              <td>{{ site.idSite }}</td>
+                              <td>{{ site.nomsite }}</td>
+                              <td>{{ site.region }}</td>
+                              <td>{{ site.delegation }}</td>
+                              <td>{{ site.secteur }}</td>
+                              <td>{{ site.x }}</td>
+                              <td>{{ site.y }}</td>
+                              <td>{{ site.fournisseur }}</td>
+                              <td>{{ site.antenne }}</td>
+                              <td>{{ site.alimentation }}</td>
+                              <td>{{ site.acces }}</td>
+                            </tr>
+                          </tbody>
+                        </table> -->
+
+                        <div class="table-container">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Id Site</th>
+                                <th>Nom Site</th>
+                                <th>Region</th>
+                                <th>Delegation</th>
+                                <th>Secteur</th>
+                                <th>X</th>
+                                <th>Y</th>
+                                <th>Fournisseur</th>
+                                <th>Antenne</th>
+                                <th>Alimentation</th>
+                                <th>Acces</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let site of siteData">
+                                <td>{{ site.idSite }}</td>
+                                <td>{{ site.nomsite }}</td>
+                                <td>{{ site.region }}</td>
+                                <td>{{ site.delegation }}</td>
+                                <td>{{ site.secteur }}</td>
+                                <td>{{ site.x }}</td>
+                                <td>{{ site.y }}</td>
+                                <td>{{ site.fournisseur }}</td>
+                                <td>{{ site.antenne }}</td>
+                                <td>{{ site.alimentation }}</td>
+                                <td>{{ site.acces }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+
+                      <!-- Nouvelle section pour afficher les données de docfinanciere -->
+                      <div
+                        class="container-fluid"
+                        *ngIf="docFinanciereData && show == 'A'"
+                      >
+                        <h4 style="font-size: 20px; margin-bottom: 20px">
+                          Document Financiere
+                        </h4>
+                        <div class="table-container">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Id Proprietaire</th>
+                                <th>Montant</th>
+                                <th>Date Contract</th>
+                                <th>Date MAJ</th>
+                                <th>Contract</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>{{ docFinanciereData?.idProprietaire }}</td>
+                                <td>{{ docFinanciereData?.montant }}</td>
+                                <td>{{ docFinanciereData?.dateContract }}</td>
+                                <td>{{ docFinanciereData?.dateMAJ }}</td>
+                                <td>
+                                  <a
+                                    [href]="contractUrl"
+                                    target="_blank"
+                                    class="btn-link"
+                                    >Download Contract</a
+                                  >
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+
+                      <!-- Section pour afficher les données d'archive -->
+                      <div class="container-fluid" *ngIf="archiveData">
+                        <h4 style="font-size: 20px; margin-bottom: 20px">
+                          Archive De Site
+                        </h4>
+
+                        <div class="table-container">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Id Proprietaire</th>
+                                <th>Montant</th>
+                                <th>Date Contract</th>
+                                <th>Date MAJ</th>
+                                <th>Contract</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>{{ docFinanciereData?.idProprietaire }}</td>
+                                <td>{{ docFinanciereData?.montant }}</td>
+                                <td>{{ docFinanciereData?.dateContract }}</td>
+                                <td>{{ docFinanciereData?.dateMAJ }}</td>
+                                <td>
+                                  <a
+                                    [href]="contractUrl"
+                                    target="_blank"
+                                    class="btn-link"
+                                    >Download Contract</a
+                                  >
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Other tab panes -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

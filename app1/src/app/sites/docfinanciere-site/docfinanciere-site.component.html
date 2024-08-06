@@ -1,0 +1,312 @@
+<!--- here testing code -->
+<div class="breadcome-area" style="margin-top: 6%; height: 70px">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="breadcome-list single-page-breadcome">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <div class="breadcome-heading">
+                <form role="search" class="sr-input-func">
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    class="search-int form-control"
+                  />
+                  <a href="#"><i class="fa fa-search"></i></a>
+                </form>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <ul class="breadcome-menu">
+                <li>
+                  <span class="bread-blod"
+                    >Acceuil / Document Financiére Site
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="breadcome-area" style="margin-top: 2%; height: 70px">
+  <!-- Header breadcrumb area -->
+</div>
+
+<div class="single-pro-review-area mt-t-30 mg-b-15">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="product-payment-inner-st">
+          <div id="myTabContent" class="tab-content custom-product-edit">
+            <div
+              class="product-tab-list tab-pane fade active in"
+              id="description"
+            >
+              <h4 style="font-size: 20px; margin-bottom: 20px">
+                Document Financiére Site
+              </h4>
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="review-content-section">
+                    <div id="dropzone1" class="pro-ad">
+                      <!-- Original Form -->
+                      <div *ngIf="!showUpdateForm">
+                        <div class="row">
+                          <div class="col-lg-4">
+                            <div class="form-group">
+                              <label for="region">Région</label>
+                              <select
+                                id="region"
+                                class="form-control"
+                                [(ngModel)]="site.region"
+                                (change)="updateDelegations()"
+                              >
+                                <option
+                                  *ngFor="let region of regions"
+                                  [value]="region"
+                                >
+                                  {{ region }}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-lg-4">
+                            <div class="form-group">
+                              <label for="delegation">Délégation</label>
+                              <select
+                                id="delegation"
+                                class="form-control"
+                                [(ngModel)]="site.delegotion"
+                                (change)="updateSites()"
+                              >
+                                <option
+                                  *ngFor="let delegation of delegotions"
+                                  [value]="delegation"
+                                >
+                                  {{ delegation }}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-lg-4">
+                            <div class="form-group">
+                              <label for="sites">Sites</label>
+                              <select
+                                id="sites"
+                                class="form-control"
+                                [(ngModel)]="site.nomsite"
+                                (ngModelChange)="storecodesite($event)"
+                              >
+                                <option
+                                  *ngFor="let site of sites"
+                                  [value]="site.codesite"
+                                >
+                                  {{ site.nomsite }}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="apd">Contrat</label>
+                          <input
+                            type="file"
+                            (change)="handleAPDFileInput($event)"
+                            id="apd"
+                            class="form-control"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="montantLoyer">Montant de loyer</label>
+                          <input
+                            type="number"
+                            id="montantLoyer"
+                            [(ngModel)]="montant"
+                            class="form-control"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="proprietaire">Proprietaire</label>
+                          <input
+                            type="text"
+                            id="proprietaire"
+                            [(ngModel)]="proprietaire"
+                            class="form-control"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="contratDate">Date de contrat</label>
+                          <input
+                            type="date"
+                            id="contratDate"
+                            class="form-control"
+                            (change)="handleContratDateChange($event)"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="miseAJourDate">Date de mise à jour</label>
+                          <input
+                            type="date"
+                            id="miseAJourDate"
+                            class="form-control"
+                            (change)="handleMajDateChange($event)"
+                          />
+                        </div>
+
+                        <div class="ButtonStyle">
+                          <button
+                            class="btn btn-success myBtn"
+                            (click)="ajouterfinance()"
+                            style="background-color: #34baa1"
+                          >
+                            Enregistrer
+                          </button>
+                          <button
+                            class="btn btn-primary myBtn"
+                            (click)="showUpdateForm = true"
+                          >
+                            Mettre à jour
+                          </button>
+                        </div>
+                      </div>
+
+                      <!-- Update Form -->
+                      <div *ngIf="showUpdateForm">
+                        <div class="form-group">
+                          <label for="region">Région</label>
+                          <select
+                            id="region"
+                            class="form-control"
+                            [(ngModel)]="site.region"
+                            (change)="updateDelegations()"
+                          >
+                            <option
+                              *ngFor="let region of regions"
+                              [value]="region"
+                            >
+                              {{ region }}
+                            </option>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="delegation">Délégation</label>
+                          <select
+                            id="delegation"
+                            class="form-control"
+                            [(ngModel)]="site.delegotion"
+                            (change)="updateSites()"
+                          >
+                            <option
+                              *ngFor="let delegation of delegotions"
+                              [value]="delegation"
+                            >
+                              {{ delegation }}
+                            </option>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="sites">Sites</label>
+                          <select
+                            id="sites"
+                            class="form-control"
+                            [(ngModel)]="site.nomsite"
+                            (ngModelChange)="storecodesite($event)"
+                          >
+                            <option
+                              *ngFor="let site of sites"
+                              [value]="site.codesite"
+                            >
+                              {{ site.nomsite }}
+                            </option>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="apd">Contrat</label>
+                          <input
+                            type="file"
+                            (change)="handleAPDFileInputnew($event)"
+                            id="apd"
+                            class="form-control"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="montantLoyer">Montant de loyer</label>
+                          <input
+                            type="number"
+                            id="montantLoyer"
+                            [(ngModel)]="montantnew"
+                            class="form-control"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="proprietaire">Proprietaire</label>
+                          <input
+                            type="text"
+                            id="proprietaire"
+                            [(ngModel)]="proprietairenew"
+                            class="form-control"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="contratDate">Date de contrat</label>
+                          <input
+                            type="date"
+                            id="contratDate"
+                            class="form-control"
+                            (change)="handleContratDateChangenew($event)"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="miseAJourDate">Date de mise à jour</label>
+                          <input
+                            type="date"
+                            id="miseAJourDate"
+                            class="form-control"
+                            (change)="handleMajDateChangenew($event)"
+                          />
+                        </div>
+
+                        <div class="ButtonStyle">
+                          <button
+                            style="background-color: #34baa1"
+                            class="btn btn-success myBtn"
+                            (click)="saveData()"
+                          >
+                            Enregistrer
+                          </button>
+                          <button
+                            class="btn btn-danger myBtn"
+                            (click)="cancelUpdate()"
+                          >
+                            Annuler
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Other tab panes -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

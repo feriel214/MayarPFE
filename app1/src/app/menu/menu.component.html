@@ -1,0 +1,135 @@
+<!-- menu.component.html -->
+
+<div id="main">
+  <div class="container">
+    <div style="margin-top:150px;margin-bottom:30px;text-align:center;">
+      <img src="assets/images/TT2.png" style="width: 200px;margin-bottom:15px">
+      <h1> Menu De SITE BI </h1>
+    </div>
+    <nav>
+      <div class="nav-fostrap">
+        <ul>
+          <li><a href="">Home</a></li>
+          <li><a href="javascript:void(0)" >Site<span class="arrow-down"></span></a>
+            <ul class="dropdown">
+              <li><a href="javascript:void(0)" (click)="toggleTable()">Gestion Site</a></li>
+              <li><a href="">Documentation Site</a></li>
+              <li><a href="">Documentation Financiére Site</a></li>
+              <li><a href="">TB</a></li>
+            </ul>
+          </li>
+          <li><a href="javascript:void(0)">Cellule<span class="arrow-down"></span></a>
+            <ul class="dropdown">
+              <li><a href="">Gestion Cellule</a></li>
+              <li><a href="">TB</a></li>
+            </ul>
+          </li>
+          <li><a href="javascript:void(0)">BI<span class="arrow-down"></span></a>
+            <ul class="dropdown">
+              <li><a href=""></a></li>
+              <li><a href=""></a></li>
+            </ul>
+          </li>
+          <li><a href=""></a></li>
+          <li><a href=""></a></li>
+          <li><a href=""></a></li>
+        </ul>
+      </div>
+      <div class="nav-bg-fostrap">
+        <div class="navbar-fostrap"> <span></span> <span></span> <span></span> </div>
+        <a href="" class="title-mobile">Fostrap</a>
+      </div>
+    </nav>
+
+  </div>
+</div>
+
+<div class="wrapper">
+
+  <div class="table" *ngIf="tableauVisible">
+
+    <div class="row header blue">
+      <div class="cell top">
+        Code Site 
+      </div>
+      <div class="cell top">
+        Nom Site
+      </div>
+      <div class="cell top">
+        Password
+      </div>
+      <div class="cell top">
+        Action
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell" data-title="Username">
+        ninjalug
+      </div>
+      <div class="cell" data-title="Email">
+        misterninja@hotmail.com
+      </div>
+      <div class="cell" data-title="Password">
+        ************
+      </div>
+      <div class="cell" data-title="Active">
+        <button class="btn-edit">Edit</button>
+        <button class="btn-delete">Delete</button>
+        <button class="btn-update">Update</button>
+        
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell" data-title="Username">
+        jsmith41
+      </div>
+      <div class="cell" data-title="Email">
+        joseph.smith@gmail.com
+      </div>
+      <div class="cell" data-title="Password">
+        ************
+      </div>
+      <div class="cell" data-title="Active">
+        No
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell" data-title="Username">
+        1337hax0r15
+      </div>
+      <div class="cell" data-title="Email">
+        hackerdude1000@aol.com
+      </div>
+      <div class="cell" data-title="Password">
+        ************
+      </div>
+      <div class="cell" data-title="Active">
+        Yes
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell" data-title="Username">
+        hairyharry19
+      </div>
+      <div class="cell" data-title="Email">
+        harryharry@gmail.com
+      </div>
+      <div class="cell" data-title="Password">
+        ************
+      </div>
+      <div class="cell" data-title="Active">
+        Yes
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+

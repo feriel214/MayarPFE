@@ -1,0 +1,25 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-navbar-admin',
+  templateUrl: './navbar-admin.component.html',
+  styleUrls: ['./navbar-admin.component.css']
+})
+export class NavbarAdminComponent implements OnInit {
+  FullName!: string;
+  
+  ngOnInit(): void {
+    this.getUserFromLocalStorage();
+    console.log("//////////////////////userName",this.FullName)
+  }
+
+  getUserFromLocalStorage(): void {
+    const user = localStorage.getItem('user');
+    if (user) {
+      const userObject = JSON.parse(user);
+      this.FullName = userObject.nom+' '+userObject.prenom;
+    } else {
+      this.FullName = 'Invité';
+    }
+  }
+}

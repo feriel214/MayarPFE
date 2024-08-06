@@ -1,0 +1,258 @@
+<!-- Start Welcome area -->
+<div class="all-content-wrapper" style="margin-top: 40px; margin-left: 30px">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="logo-pro">
+          <a href="index.html"
+            ><img class="main-logo" src="img/logo/logo.png" alt=""
+          /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-navbar-admin></app-navbar-admin>
+  <div class="breadcome-area" style="height: 70px; margin-left: -2%">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="breadcome-list single-page-breadcome">
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="breadcome-heading">
+                  <form role="search" class="sr-input-func">
+                    <input
+                      type="text"
+                      placeholder="Search..."
+                      class="search-int form-control"
+                    />
+                    <a href="#"><i class="fa fa-search"></i></a>
+                  </form>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <ul class="breadcome-menu">
+                  <li>
+                    <span class="bread-blod"
+                      >Acceuil / Liste Fournisseurs
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Here -->
+  <div class="product-status mg-b-15">
+    <div class="container-fluid">
+      <div class="row">
+        <div
+          style="margin-left: -2%"
+          class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+        >
+          <div style="margin-right: -2%" class="product-status-wrap drp-lst">
+            <h4 style="margin-bottom: 35px">Liste des Fournisseurs</h4>
+            <div class="add-product">
+              <a
+                class="Primary mg-b-10"
+                href="#"
+                style="background-color: #34baa1"
+                data-toggle="modal"
+                data-target="#PrimaryModalalert"
+                >Ajouter Fournisseur</a
+              >
+            </div>
+            <div class="asset-inner">
+              <table>
+                <tr>
+                  <th>Code Fournisseur</th>
+                  <th>Image</th>
+                  <th>Nom Fournisseur</th>
+                  <th>Actions</th>
+                </tr>
+                <tr *ngFor="let fournisseur of fournisseurs">
+                  <td>{{ fournisseur.codeFourn }}</td>
+                  <td>
+                    <img
+                      [src]="'assets/images/avatars/' + getRandomAvatar()"
+                      alt="Avatar"
+                    />
+                  </td>
+                  <td>{{ fournisseur.nomFournisseur }}</td>
+
+                  <td>
+                    <button
+                      data-toggle="tooltip"
+                      title="Edit"
+                      class="pd-setting-ed"
+                      data-toggle="modal"
+                      data-target="#EditModalalert"
+                      (click)="editFournisseur(fournisseur)"
+                    >
+                      <fa-icon [icon]="faEdit" class="text-success"></fa-icon>
+                    </button>
+                    <button
+                      data-toggle="tooltip"
+                      title="Trash"
+                      class="pd-setting-ed"
+                      (click)="
+                        fournisseur.idFourn
+                          ? deleteFournisseurById(fournisseur.idFourn)
+                          : null
+                      "
+                    >
+                      <fa-icon [icon]="faTrash" class="text-danger"></fa-icon>
+                    </button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="custom-pagination">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <a class="page-link" href="#">Previous</a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-copyright-area">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="footer-copy-right">
+            <p>
+              Copyright © 2018. All rights reserved. Template by
+              <a href="https://colorlib.com/wp/templates/">Colorlib</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Fournisseur Form -->
+<div
+  id="PrimaryModalalert"
+  class="modal modal-edu-general default-popup-PrimaryModal fade"
+  role="dialog"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-close-area modal-close-df">
+        <a class="close" data-dismiss="modal" href="#">
+          <i class="fa fa-close"></i>
+        </a>
+      </div>
+      <div class="modal-body">
+        <h3>Ajouter Fournisseur</h3>
+        <div class="product-tab-list tab-pane fade active in" id="description">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="review-content-section">
+                <div id="dropzone1" class="pro-ad">
+                  <form (submit)="addFournisseur()">
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="Code Fournisseur"
+                      [(ngModel)]="newFournisseur.codeFourn"
+                      name="codeFourn"
+                      required
+                    />
+                    <br />
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="Nom Fournisseur"
+                      [(ngModel)]="newFournisseur.nomFournisseur"
+                      name="nomFournisseur"
+                      required
+                    />
+                    <br />
+                    <button
+                      type="submit"
+                      class="btn btn-success waves-effect waves-light"
+                    >
+                      Ajouter Fournisseur
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a data-dismiss="modal" href="#">Fermer</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Fournisseur Form -->
+<div
+  id="EditModalalert"
+  class="modal modal-edu-general default-popup-PrimaryModal fade"
+  role="dialog"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-close-area modal-close-df">
+        <a class="close" data-dismiss="modal" href="#"
+          ><i class="fa fa-close"></i
+        ></a>
+      </div>
+      <div class="modal-body">
+        <h3>Modifier Fournisseur</h3>
+        <div *ngIf="editFournisseurData">
+          <form (submit)="updateFournisseur()">
+            <input type="text" [value]="editFournisseurData.idFourn" hidden />
+            <input
+              class="form-control"
+              editFournisseurData
+              type="text"
+              placeholder="Code Fournisseur"
+              [(ngModel)]="editFournisseurData.codeFourn"
+              name="editCodeFourn"
+              required
+            />
+            <br />
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Nom Fournisseur"
+              [(ngModel)]="editFournisseurData.nomFournisseur"
+              name="editNomFournisseur"
+              required
+            />
+            <br />
+            <button type="submit" class="btn btn-success waves-effect">
+              Modifier Fournisseur
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a data-dismiss="modal" href="#">Fermer</a>
+      </div>
+    </div>
+  </div>
+</div>

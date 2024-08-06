@@ -1,0 +1,105 @@
+<div class="error-pagewrap">
+    <div class="error-page-int">
+        <div class="text-center custom-login">
+            <h3>Gestion Site</h3>
+            <p>This is the best app ever!</p>
+        </div>
+        <div class="content-error">
+            <div class="hpanel">
+                <div class="panel-body">
+                    <form  action="#" id="loginForm">
+                        <div class="row">
+                            <div class="form-group col-lg-12">
+                                <label>CodeSite</label>
+                                <input  [ngModelOptions]="{standalone: true}" [(ngModel)]="site.codesite" class="form-control">
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>NomSite</label>
+                                <input [ngModelOptions]="{standalone: true}"  [(ngModel)]="site.nomsite" class="form-control">
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Région</label>
+                                <select [ngModelOptions]="{standalone: true}"  [(ngModel)]="site.region" class="form-control">
+                                    <option value="region1">Région 1</option>
+                                    <option value="region2">Région 2</option>
+                                    <option value="region3">Région 3</option>
+                                    <!-- Ajoutez d'autres options au besoin -->
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Delegotion</label>
+                                <select  [ngModelOptions]="{standalone: true}" [(ngModel)]="site.delegotion" class="form-control">
+                                    <option value="delegotion1">Delegotion 1</option>
+                                    <option value="delegotion2">Delegotion 2</option>
+                                    <option value="delegotion3">Delegotion 3</option>
+                                    <!-- Ajoutez d'autres options au besoin -->
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Secteur</label>
+                                <select  [ngModelOptions]="{standalone: true}" [(ngModel)]="site.secteur" class="form-control">
+                                    <option value="secteur1">Secteur 1</option>
+                                    <option value="secteur2">Secteur 2</option>
+                                    <option value="secteur3">Secteur 3</option>
+                                    <!-- Ajoutez d'autres options au besoin -->
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>X</label>
+                                <input [ngModelOptions]="{standalone: true}" [(ngModel)]="site.x" type="number" class="form-control">
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Y</label>
+                                <input [ngModelOptions]="{standalone: true}"  [(ngModel)]="site.y" type="number" class="form-control">
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Fournisseur</label>
+                                <select [ngModelOptions]="{standalone: true}"  [(ngModel)]="site.fournisseur" class="form-control">
+                                    <option value="fournisseur1">HW</option>
+                                    <option value="fournisseur2">ER</option>
+                                    <!-- Ajoutez d'autres options au besoin -->
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>HBA</label>
+                                <input  [ngModelOptions]="{standalone: true}" [(ngModel)]="site.HBA" class="form-control">
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Antenne</label>
+                                <input [ngModelOptions]="{standalone: true}" [(ngModel)]="site.antenne" class="form-control">
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Alimentation</label>
+                                <select  [ngModelOptions]="{standalone: true}"  [ngModelOptions]="{standalone: true}" [(ngModel)]="site.alimentation" class="form-control">
+                                    <option value="alimentation1">Alimentation 1</option>
+                                    <option value="alimentation2">Alimentation 2</option>
+                                    <option value="alimentation3">Alimentation 3</option>
+                                    <!-- Ajoutez d'autres options au besoin -->
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <label>Accés</label>
+                                <select  [ngModelOptions]="{standalone: true}" [(ngModel)]="site.acces" class="form-control">
+                                    <option value="acces1">Accés 1</option>
+                                    <option value="acces2">Accés 2</option>
+                                    <!-- Ajoutez d'autres options au besoin -->
+                                </select>
+                            </div>
+                            <div class="checkbox col-lg-12">
+                                <input type="checkbox" class="i-checks" checked> S'inscrire à notre newsletter
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-success loginbtn" (click)="updateSite()">Update</button>
+                            <button class="btn btn-default" (click)="backSite()">Annuler</button>
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="text-center login-footer">
+
+        </div>
+    </div>   
+</div>

@@ -1,0 +1,146 @@
+<!--- here testing code -->
+<div class="breadcome-area" style="margin-top:6%;height: 70px;">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="breadcome-list single-page-breadcome">
+                  <div class="row">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <div class="breadcome-heading">
+                              <form role="search" class="sr-input-func">
+                                  <input type="text" placeholder="Search..." class="search-int form-control">
+                                  <a href="#"><i class="fa fa-search"></i></a>
+                              </form>
+                          </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <ul class="breadcome-menu">
+                              <li><span class="bread-blod">Acceuil / SITE_TELC_nv_signal</span></li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="single-pro-review-area mt-t-30 mg-b-15">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="product-payment-inner-st">
+                  <div id="myTabContent" class="tab-content custom-product-edit">
+                      <div class="product-tab-list tab-pane fade active in" id="description">
+                          <div class="row">
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                  <div class="review-content-section">
+                                    <div class="chart-container">
+                                      <div class="chart-row">
+                                        <!-- Chart 1: Pie Chart for Number of Sites by Gouvernorat -->
+                                        <div class="chart" >
+                                          <h4>Scatter Plot for PIRE vs. Nombre d'antennes</h4>
+                                          <iframe [src]="plotUrl3" width="500" height="500" frameborder="0"></iframe>
+                                        </div>
+                                        
+                                        <!-- Chart 2: Bar Chart for Number of Sites by Délégation -->
+                                        <div class="chart">
+                                          <h4>Bar Chart for Number of Sites by Délégation</h4>
+                                          <iframe [src]="plotUrl2" width="500" height="500" frameborder="0"></iframe>
+                                        </div>
+                                      </div>
+                                      
+                                      <!-- Chart 3 and 4: Scatter Plot and Histogram -->
+                                      <div class="chart-row">
+                                        <!-- Chart 3: Scatter Plot for PIRE vs. Nombre d'antennes -->
+                                        <div class="chart">
+                                          <h4>  Number of Sites by Gouvernorat</h4>
+                                          <iframe [src]="plotUrl" width="500" height="500" frameborder="0"></iframe>
+                                        </div>
+                                      
+                                        <!-- Chart 4: Histogram for Level of Signal -->
+                                        <div class="chart">
+                                          <!-- <h4>Histogram for Level of Signal</h4> -->
+                                          <div class="container" >
+                                            <h2>Les Données de chaque Site </h2>
+                                            
+                                            <!-- Input group for site name and filter button -->
+                                            <div class="input-group">
+                                              <label for="siteName">Site:</label>
+                                              <input id="siteName" [(ngModel)]="siteName" placeholder="Enter site name" />
+                                              <button (click)="filterData()">Filter</button>
+                                            </div>
+                                            
+                                            <!-- Spinner to indicate loading -->
+                                            <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin-clockwise"></ngx-spinner>
+                                            
+                                            <!-- Table to display filtered data -->
+                                            <div *ngIf="tableData.length > 0" class="table-container">
+                                              <table class="table table-bordered">
+                                                <thead>
+                                                  <tr>
+                                                    <th>Variable</th>
+                                                    <th>Valeur</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                  <tr *ngFor="let item of tableData">
+                                                    <td>{{ item.variable }}</td>
+                                                    <td>{{ item.value }}</td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                            
+                                            <!-- Placeholder for no data message -->
+                                            <div *ngIf="tableData.length === 0 && siteName.trim()">
+                                              No data available for {{ siteName }}
+                                            </div>
+                                            
+                                            <!-- Placeholder for initial state -->
+                                            <div *ngIf="siteName.trim() === ''">
+                                              Please enter a site name to filter data.
+                                            </div>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+                                    </div>
+                                    
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Other tab panes -->
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

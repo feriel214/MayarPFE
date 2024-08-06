@@ -1,0 +1,41 @@
+<div class="container">
+  <h2>Report3 Works!</h2>
+  
+  <!-- Input group for site name and filter button -->
+  <div class="input-group">
+    <label for="siteName">Site:</label>
+    <input id="siteName" [(ngModel)]="siteName" placeholder="Enter site name" />
+    <button (click)="filterData()">Filter</button>
+  </div>
+  
+  <!-- Spinner to indicate loading -->
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin-clockwise"></ngx-spinner>
+  
+  <!-- Table to display filtered data -->
+  <div *ngIf="tableData.length > 0" class="table-container">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Variable</th>
+          <th>Valeur</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of tableData">
+          <td>{{ item.variable }}</td>
+          <td>{{ item.value }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Placeholder for no data message -->
+  <div *ngIf="tableData.length === 0 && siteName.trim()">
+    No data available for {{ siteName }}
+  </div>
+  
+  <!-- Placeholder for initial state -->
+  <div *ngIf="siteName.trim() === ''">
+    Please enter a site name to filter data.
+  </div>
+</div>

@@ -1,0 +1,29 @@
+.icon-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: inherit;
+    margin-left: 10px;
+  }
+  
+  .icon-button:hover {
+    color: #007bff; /* Couleur au survol */
+  }
+  
+  .fa-icon {
+    font-size: 1.5em; /* Ajustez la taille de l'icône si nécessaire */
+  }
+  
+  .text-success {
+    color: #28a745; /* Couleur verte pour l'édition */
+  }
+  
+  .text-danger {
+    color: #dc3545; /* Couleur rouge pour la suppression */
+  }
+  
+  .asset-inner {
+    /* Vos styles personnalisés pour l'apparence globale de la table */
+  }
+  

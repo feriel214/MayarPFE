@@ -1,0 +1,152 @@
+<!-- Start Welcome area -->
+<div class="all-content-wrapper" style="margin-top: 50px; margin-left: 30px">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="logo-pro">
+          <a href="index.html">
+            <img class="main-logo" src="img/logo/logo.png" alt="" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-navbar-admin></app-navbar-admin>
+  <div class="breadcome-area" style="height: 70px; margin-left: -2%">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="breadcome-list single-page-breadcome">
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="breadcome-heading">
+                  <form role="search" class="sr-input-func">
+                    <input
+                      type="text"
+                      placeholder="Search..."
+                      class="search-int form-control"
+                    />
+                    <a href="#"><i class="fa fa-search"></i></a>
+                  </form>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <ul class="breadcome-menu">
+                  <li>
+                    <span class="bread-blod">Acceuil / Liste Sites </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-status mg-b-15">
+    <div class="container-fluid">
+      <div class="row">
+        <div
+          style="margin-left: -2%"
+          class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+        >
+          <div class="product-status-wrap drp-lst" style="margin-right: -2%">
+            <h4 style="margin-bottom: 50px">Liste des Sites</h4>
+            <div class="add-product">
+              <a
+                class="Primary mg-b-10"
+                href="#"
+                style="background-color: #34baa1"
+                data-toggle="modal"
+                data-target="#PrimaryModalalert"
+                >Ajouter Site</a
+              >
+            </div>
+            <div class="asset-inner">
+              <table
+                id="table"
+                data-toggle="table"
+                data-pagination="true"
+                data-search="true"
+                data-show-columns="true"
+                data-show-pagination-switch="true"
+                data-show-refresh="true"
+                data-key-events="true"
+                data-show-toggle="true"
+                data-resizable="true"
+                data-cookie="true"
+                data-cookie-id-table="saveId"
+                data-show-export="true"
+                data-click-to-select="true"
+                data-toolbar="#toolbar"
+              >
+                <thead>
+                  <tr>
+                    <!-- <th data-field="state" data-checkbox="true"></th> -->
+                    <th data-field="code" data-editable="true">Code Site</th>
+                    <th data-field="nomsite" data-editable="true">Nom Site</th>
+                    <th data-field="region" data-editable="true">Region</th>
+                    <th data-field="delegotion" data-editable="true">
+                      Delegotion
+                    </th>
+                    <th data-field="secteur" data-editable="true">Secteur</th>
+                    <th data-field="X" data-editable="true">Pos X</th>
+                    <th data-field="Y" data-editable="true">Pos Y</th>
+                    <th data-field="Fournisseur" data-editable="true">
+                      Fournisseur
+                    </th>
+                    <th data-field="HBA" data-editable="true">HBA</th>
+                    <th data-field="antenne" data-editable="true">Antenne</th>
+                    <th data-field="alimentation" data-editable="true">
+                      Alimentation
+                    </th>
+                    <th data-field="accés" data-editable="true">Accés</th>
+                    <!-- <th data-field="action" data-editable="true">Action</th> -->
+                    <th data-field="icondelete" class="icon-column">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let site of ListSites">
+                    <td>{{ site.codesite }}</td>
+                    <td>{{ site.nomsite }}</td>
+                    <td>{{ site.region }}</td>
+                    <td>{{ site.delegotion }}</td>
+                    <td>{{ site.secteur }}</td>
+                    <td>{{ site.x }}</td>
+                    <td>{{ site.y }}</td>
+                    <td>{{ site.fournisseur }}</td>
+                    <td>{{ site.HBA }}</td>
+                    <td>{{ site.antenne }}</td>
+                    <td>{{ site.alimentation }}</td>
+                    <td>{{ site.acces }}</td>
+                    <td class="icon-column">
+                      <button
+                        data-toggle="tooltip"
+                        title="Modifier"
+                        class="icon-button"
+                        data-toggle="modal"
+                        data-target="#EditSiteModal"
+                        (click)="editSite(site)"
+                      >
+                        <i class="fa fa-pencil text-success"></i>
+                      </button>
+                      <button
+                        data-toggle="tooltip"
+                        title="Supprimer"
+                        class="icon-button"
+                        (click)="DeleteSite(site.codesite)"
+                      >
+                        <i class="fa fa-trash text-danger"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,242 @@
+<!-- Start Welcome area -->
+<div class="all-content-wrapper" style="margin-top: 50px; margin-left: 30px">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="logo-pro">
+          <a href="index.html"
+            ><img class="main-logo" src="img/logo/logo.png" alt=""
+          /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-navbar-admin></app-navbar-admin>
+  <!-- Here -->
+  <div class="product-status mg-b-15">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="product-status-wrap drp-lst">
+            <h4>Liste des Secteurs</h4>
+            <div class="add-product">
+              <a
+                class="Primary mg-b-10"
+                href="#"
+                data-toggle="modal"
+                data-target="#PrimaryModalalert"
+                >Ajouter</a
+              >
+            </div>
+            <div class="asset-inner">
+              <table>
+                <tr>
+                  <th>Code Secteur</th>
+                  <th>Libelle Secteur</th>
+                  <th>Delegation</th>
+                  <th>Actions</th>
+                </tr>
+                <tr *ngFor="let secteur of secteurs">
+                  <td>{{ secteur.codeSec }}</td>
+                  <td>{{ secteur.libelleSec }}</td>
+                  <td>{{ getDelegationName(secteur.delegation_id) }}</td>
+                  <td>
+                    <button
+                      data-toggle="tooltip"
+                      title="Edit"
+                      class="pd-setting-ed"
+                      data-toggle="modal"
+                      data-target="#EditModalalert"
+                      (click)="editSecteur(secteur)"
+                    >
+                      <i
+                        class="fa fa-pencil-square-o bg-suceess"
+                        aria-hidden="true"
+                      ></i>
+                    </button>
+                    <button
+                      data-toggle="tooltip"
+                      title="Trash"
+                      class="pd-setting-ed"
+                      (click)="
+                        secteur.idSecteur
+                          ? deleteSecteurById(secteur.idSecteur)
+                          : null
+                      "
+                    >
+                      <i class="fa fa-trash-o bg-danger" aria-hidden="true"></i>
+                    </button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="custom-pagination">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <a class="page-link" href="#">Previous</a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-copyright-area">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="footer-copy-right">
+            <p>
+              Copyright © 2018. All rights reserved. Template by
+              <a href="https://colorlib.com/wp/templates/">Colorlib</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Secteur Form -->
+<div
+  id="PrimaryModalalert"
+  class="modal modal-edu-general default-popup-PrimaryModal fade"
+  role="dialog"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-close-area modal-close-df">
+        <a class="close" data-dismiss="modal" href="#">
+          <i class="fa fa-close"></i>
+        </a>
+      </div>
+      <div class="modal-body">
+        <h3>Ajouter Secteur</h3>
+        <div class="product-tab-list tab-pane fade active in" id="description">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="review-content-section">
+                <div id="dropzone1" class="pro-ad">
+                  <form (submit)="addSecteur()">
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="Code"
+                      [(ngModel)]="newSecteur.codeSec"
+                      name="codeSec"
+                      required
+                    />
+                    <br />
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="Libelle"
+                      [(ngModel)]="newSecteur.libelleSec"
+                      name="libelleSec"
+                      required
+                    />
+                    <br />
+                    <select
+                      class="form-control"
+                      [(ngModel)]="newSecteur.delegation_id"
+                      name="delegation_id"
+                      required
+                    >
+                      <option
+                        *ngFor="let delegation of delegations"
+                        [value]="delegation.idDel"
+                      >
+                        {{ delegation.libelleDel }}
+                      </option>
+                    </select>
+                    <br />
+                    <button
+                      type="submit"
+                      class="btn btn-success waves-effect waves-light"
+                    >
+                      Ajouter Secteur
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a data-dismiss="modal" href="#">Fermer</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Edit Secteur Form -->
+<div
+  id="EditModalalert"
+  class="modal modal-edu-general default-popup-PrimaryModal fade"
+  role="dialog"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-close-area modal-close-df">
+        <a class="close" data-dismiss="modal" href="#"
+          ><i class="fa fa-close"></i
+        ></a>
+      </div>
+      <div class="modal-body">
+        <h3>Modifier Secteur</h3>
+        <div *ngIf="editSecteurData?.idSecteur">
+          <form (submit)="updateSecteur()">
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Code"
+              [(ngModel)]="editSecteurData.codeSec"
+              name="editCodeSec"
+              required
+            />
+            <br />
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Libelle"
+              [(ngModel)]="editSecteurData.libelleSec"
+              name="editLibelleSec"
+              required
+            />
+            <br />
+            <select
+              class="form-control"
+              [(ngModel)]="editSecteurData.delegation_id"
+              name="editDelegation_id"
+              required
+            >
+              <option
+                *ngFor="let delegation of delegations"
+                [value]="delegation.idDel"
+              >
+                {{ delegation.libelleDel }}
+              </option>
+            </select>
+            <br />
+            <button type="submit" class="btn btn-success waves-effect">
+              Modifier Secteur
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a data-dismiss="modal" href="#">Fermer</a>
+      </div>
+    </div>
+  </div>
+</div>

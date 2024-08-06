@@ -1,0 +1,6 @@
+.tawk-custom-color, .tawk-custom-border-color ,.tawk-button{
+    display: none;
+}
+#tawk-bubble-container{
+    display: none;
+}

@@ -1,0 +1,286 @@
+<!-- Start Welcome area -->
+<div class="all-content-wrapper" style="margin-top: 40px; margin-left: 30px">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="logo-pro">
+          <a href="index.html"
+            ><img class="main-logo" src="img/logo/logo.png" alt=""
+          /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-navbar-admin></app-navbar-admin>
+  <!--- here testing code -->
+  <div class="breadcome-area" style="height: 70px; margin-left: -2%">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="breadcome-list single-page-breadcome">
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="breadcome-heading">
+                  <form role="search" class="sr-input-func">
+                    <input
+                      type="text"
+                      placeholder="Search..."
+                      class="search-int form-control"
+                    />
+                    <a href="#"><i class="fa fa-search"></i></a>
+                  </form>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <ul class="breadcome-menu">
+                  <li>
+                    <span class="bread-blod">Acceuil / Liste Délegations </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-status mg-b-15">
+    <div class="container-fluid">
+      <div class="row">
+        <div
+          style="margin-left: -2%"
+          class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+        >
+          <div class="product-status-wrap drp-lst" style="margin-right: -2%">
+            <h4 style="margin-bottom: 35px">Liste des Délegations</h4>
+            <div class="add-product">
+              <a
+                class="Primary mg-b-10"
+                href="#"
+                style="background-color: #34baa1"
+                data-toggle="modal"
+                data-target="#PrimaryModalalert"
+                >Ajouter Délegation</a
+              >
+            </div>
+            <div class="asset-inner">
+              <table>
+                <tr>
+                  <th>Code Délegation</th>
+
+                  <th>Nom Délegation</th>
+                  <th>Nom Région</th>
+                  <th>Actions</th>
+                </tr>
+                <tr *ngFor="let delegation of delegations">
+                  <td>{{ delegation.codeDel }}</td>
+                  <td>{{ delegation.libelleDel }}</td>
+                  <!-- Nom region -->
+                  <td>{{ getRegionName(delegation.region_id) }}</td>
+
+                  <!-- <td>
+                    <button
+                      data-toggle="tooltip"
+                      title="Edit"
+                      class="pd-setting-ed"
+                      data-toggle="modal"
+                      data-target="#EditModalalert"
+                      (click)="editDelegation(delegation)"
+                    >
+                      <i
+                        class="fa fa-pencil-square-o bg-suceess"
+                        aria-hidden="true"
+                      ></i>
+                    </button>
+
+                    <button
+                      data-toggle="tooltip"
+                      title="Trash"
+                      class="pd-setting-ed"
+                    >
+                      <i
+                        class="fa fa-trash-o bg-danger"
+                        aria-hidden="true"
+                        (click)="deleteDelegationById(delegation.idDel)"
+                      ></i>
+                    </button>
+                  </td> -->
+
+                  <td>
+                    <button
+                      data-toggle="tooltip"
+                      title="Edit"
+                      class="icon-button"
+                      data-toggle="modal"
+                      data-target="#EditModalalert"
+                      (click)="editDelegation(delegation)"
+                    >
+                      <fa-icon [icon]="faEdit" class="text-success"></fa-icon>
+                    </button>
+                    <button
+                      data-toggle="tooltip"
+                      title="Trash"
+                      class="icon-button"
+                      (click)="deleteDelegationById(delegation.idDel)"
+                    >
+                      <fa-icon [icon]="faTrash" class="text-danger"></fa-icon>
+                    </button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="custom-pagination">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <a class="page-link" href="#">Previous</a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Delegation Form -->
+<div
+  id="PrimaryModalalert"
+  class="modal modal-edu-general default-popup-PrimaryModal fade"
+  role="dialog"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-close-area modal-close-df">
+        <a class="close" data-dismiss="modal" href="#">
+          <i class="fa fa-close"></i>
+        </a>
+      </div>
+      <div class="modal-body">
+        <h3>Ajouter Délegation</h3>
+        <div class="product-tab-list tab-pane fade active in" id="description">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="review-content-section">
+                <div id="dropzone1" class="pro-ad">
+                  <form (submit)="addDelegation()">
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="Code"
+                      [(ngModel)]="newDelegation.codeDel"
+                      name="codeDel"
+                      required
+                    />
+                    <br />
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="Libelle"
+                      [(ngModel)]="newDelegation.libelleDel"
+                      name="libelleDel"
+                      required
+                    />
+                    <br />
+                    <select
+                      class="form-control"
+                      class="form-control"
+                      [(ngModel)]="newDelegation.region_id"
+                      name="region_id"
+                      required
+                    >
+                      <option
+                        *ngFor="let region of regions"
+                        [value]="region.idReg"
+                      >
+                        {{ region.libelleReg }}
+                      </option>
+                    </select>
+                    <br />
+                    <button
+                      type="submit"
+                      class="btn btn-success waves-effect waves-light"
+                    >
+                      Ajouter Delegation
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a data-dismiss="modal" href="#">Fermer</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Region Form -->
+<div
+  id="EditModalalert"
+  class="modal modal-edu-general default-popup-PrimaryModal fade"
+  role="dialog"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-close-area modal-close-df">
+        <a class="close" data-dismiss="modal" href="#"
+          ><i class="fa fa-close"></i
+        ></a>
+      </div>
+      <div class="modal-body">
+        <h3>Modifier Delegation</h3>
+        <div *ngIf="editDelegationData.idDel">
+          <form (submit)="updateDelegation()">
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Code"
+              [(ngModel)]="editDelegationData.codeDel"
+              name="editCodeDel"
+              required
+            />
+            <br />
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Libelle"
+              [(ngModel)]="editDelegationData.libelleDel"
+              name="editLibelleDel"
+              required
+            />
+            <br />
+            <select
+              class="form-control"
+              [(ngModel)]="editDelegationData.region_id"
+              name="editRegion_id"
+              required
+            >
+              <option *ngFor="let region of regions" [value]="region.idReg">
+                {{ region.libelleReg }}
+              </option>
+            </select>
+            <br />
+            <button type="submit" class="btn btn-success waves-effect">
+              Modifier Delegation
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a data-dismiss="modal" href="#">Fermer</a>
+      </div>
+    </div>
+  </div>
+</div>

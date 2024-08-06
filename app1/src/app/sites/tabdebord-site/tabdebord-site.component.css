@@ -1,0 +1,113 @@
+.asset-inner {
+    padding: 20px;
+    background-color: #ffffff; /* Remove any background color */
+    border-radius: 5px;
+  }
+  
+  .table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    border-collapse: collapse; /* Remove spacing between borders */
+  }
+  
+  .table thead th {
+    background-color: #ffffff; /* White background for header */
+    color: #495057; /* Dark gray text color */
+    font-weight: bold;
+    border-bottom: 2px solid #dee2e6; /* Light gray border at bottom */
+  }
+  
+  .table tbody tr {
+    border-bottom: 1px solid #dee2e6; /* Light gray border for rows */
+  }
+  
+  .table tbody tr:nth-child(even) {
+    background-color: #ffffff; /* Remove background color for even rows */
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f8f9fa; /* Light gray background on hover */
+  }
+  
+  .icon-column {
+    text-align: center;
+  }
+  
+  .icon-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    margin: 0 5px;
+  }
+  
+  .icon-button:hover {
+    opacity: 0.8; /* Slight opacity on hover */
+  }
+  
+  .table-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f8f9fa;
+  }
+  
+  .table thead {
+    background-color: #e9ecef;
+  }
+  
+  .table thead th {
+    padding: 12px;
+    text-align: left;
+    color: #495057;
+    border-bottom: 2px solid #dee2e6;
+  }
+  
+  .table tbody tr {
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #e9ecef;
+  }
+  
+  .table td {
+    padding: 12px;
+    text-align: left;
+  }
+  
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+  }
+  
+  .table-bordered {
+    border: 1px solid #dee2e6;
+  }
+  
+  .table-bordered th,
+  .table-bordered td {
+    border: 1px solid #dee2e6;
+  }
+  
+  .table a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .table a:hover {
+    text-decoration: underline;
+  }
+  
