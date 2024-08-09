@@ -1,16 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { SiteService } from 'src/app/service/site.service';
-import Swal from 'sweetalert2';
-
+import jsPDF from 'jspdf';
+import 'jspdf-autotable'; // Assurez-vous que ceci est importé correctement
+import html2canvas from 'html2canvas';
+import * as XLSX from 'xlsx';
+import * as Papa from 'papaparse';
 
 @Component({
   selector: 'app-tabdebord-site',
   templateUrl: './tabdebord-site.component.html',
   styleUrls: ['./tabdebord-site.component.css']
 })
-export class TabdebordSiteComponent {
+export class TabdebordSiteComponent implements OnInit {
   site = {
     idSite: '',
     codesite: '',
@@ -27,22 +29,13 @@ export class TabdebordSiteComponent {
     acces: ''
   };
 
-
-
   archiveData: any;
   ficheMisServiceUrl: string | undefined;
-  APDUrl:string | undefined;
-  ficheExpUrl:string | undefined;
+  APDUrl: string | undefined;
+  ficheExpUrl: string | undefined;
   show: string | undefined;
-
-
-
-
-
-
-
   contractUrl: string | undefined;
-  docFinanciereData: any = {}; 
+  docFinanciereData: any = {};
   siteData: any[] = [];
   regions: string[] = ['region1', 'region2', 'region3'];
   delegotions: any[] = [];
@@ -51,17 +44,17 @@ export class TabdebordSiteComponent {
   selectedSiteCode: any;
   selectedidSite: any;
   selectedidCel: any;
+
   constructor(private route: ActivatedRoute, private siteService: SiteService, private router: Router) {}
 
   ngOnInit(): void {
     this.updateDelegations();
   }
+
   updateDelegations(): void {
     this.siteService.getdelegbyregion(this.site.region).subscribe(
       (response: any[]) => {
-        console.log('region', this.site.region);
         this.delegotions = response.map((site: any) => site.delegotion);
-        console.log("Selected delegations: ", this.delegotions);
       },
       (error: any) => {
         console.error('Error fetching delegations:', error);
@@ -69,27 +62,20 @@ export class TabdebordSiteComponent {
     );
   }
 
-  updateFournisseur(): void{
-
-    console.log('Fetching Fournisseurs...');
+  updateFournisseur(): void {
     this.siteService.getFinanciereByRegionAndDelegotion(this.site.region, this.site.delegotion).subscribe(
       (response: any[]) => {
-        console.log('fournisseurs:', response);
         this.fournisseurs = response;
       },
       (error: any) => {
-        console.error('Error fetching sites:', error);
+        console.error('Error fetching fournisseurs:', error);
       }
-    );}
-
-
-
+    );
+  }
 
   updateSites(): void {
-    console.log('Fetching sites...');
-    this.siteService.getSiteByRegionAndDelegotionAndFournisseur(this.site.region, this.site.delegotion,this.site.fournisseur).subscribe(
+    this.siteService.getSiteByRegionAndDelegotionAndFournisseur(this.site.region, this.site.delegotion, this.site.fournisseur).subscribe(
       (response: any[]) => {
-        console.log('Sites:', response);
         this.sites = response;
       },
       (error: any) => {
@@ -100,16 +86,13 @@ export class TabdebordSiteComponent {
 
   storecodesite(id: any): void {
     this.selectedSiteCode = id;
-    console.log('Selected Site Code:', this.selectedSiteCode);
-
     this.siteService.getidSiteBycode(this.selectedSiteCode).subscribe(
       (response: any) => {
         this.selectedidSite = response.idSite;
-        console.log('Selected id Site:', this.selectedidSite);
         this.fetchSiteData();
         this.fetchDocFinanciereData();
-        this.  fetchArchiveData();  
-        this.show="A";
+        this.fetchArchiveData();  
+        this.show = "A";
       },
       (error: any) => {
         console.error('Error fetching id Site:', error);
@@ -121,7 +104,6 @@ export class TabdebordSiteComponent {
     this.siteService.getSiteById(this.selectedSiteCode).subscribe(
       data => {
         this.siteData = data;
-        console.log('Selected Site:', this.siteData);
       },
       error => {
         console.error('Error fetching site data:', error);
@@ -132,37 +114,163 @@ export class TabdebordSiteComponent {
   fetchDocFinanciereData(): void {
     this.siteService.getDocById(this.selectedSiteCode).subscribe(
       data => {
-        console.log('API Response:', data); // Check API response structure
         this.docFinanciereData = data.docFinanciere;
         this.contractUrl = data.contract_url;
-        console.log('Doc Financiere Data:', this.docFinanciereData);
       },
       error => {
         console.error('Error fetching doc financiere data:', error);
       }
     );
   }
-  
 
   fetchArchiveData(): void {
     this.siteService.getArchById(this.selectedSiteCode).subscribe(
       data => {
-        console.log('API Response:', data); // Check API response structure
         this.archiveData = data.archive;
         this.ficheMisServiceUrl = data.ficheMisService_url;
         this.APDUrl = data.APD_url;
         this.ficheExpUrl = data.ficheExp_url;
-        console.log('Archive Data:', this.archiveData);
       },
-      error => {
+      (error: any) => {
         console.error('Error fetching archive data:', error);
       }
     );
   }
 
+ 
+  
 
+  // Convert JSON to CSV
+  convertToCSV(objArray: any[]): string {
+    const header = Object.keys(objArray[0]);
+    const csv = [
+      header.join(','),
+      ...objArray.map(row => header.map(fieldName => JSON.stringify(row[fieldName], this.replacer)).join(','))
+    ].join('\r\n');
+    return csv;
+  }
 
+  // Define the replacer function
+  replacer(key: string, value: any): any {
+    return value === null ? '' : value;
+  }
 
+  exportToPDF(): void {
+    const dataElement = document.getElementById('report-content');
+    if (dataElement) {
+      html2canvas(dataElement).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF();
+        const imgWidth = 210; // A4 width in mm
+        const pageHeight = 295; // A4 height in mm
+        const imgHeight = canvas.height * imgWidth / canvas.width;
+        let heightLeft = imgHeight;
+        let position = 0;
+  
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+  
+        while (heightLeft >= 0) {
+          pdf.addPage();
+          pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+          heightLeft -= pageHeight;
+          position = heightLeft - imgHeight;
+        }
+  
+        pdf.save('report.pdf');
+      }).catch(error => {
+        console.error('Error generating PDF:', error);
+      });
+    } else {
+      console.error('Element with id "report-content" not found.');
+    }
+  }
+  
+  
+  // Exporter en CSV
+  exportToCSV(): void {
+    // Combinez toutes les données en un seul tableau
+    const combinedData = [
+      ...this.siteData.map(site => [
+        site.idSite,
+        site.nomsite,
+        site.region,
+        site.delegotion,
+        site.secteur,
+        site.x,
+        site.y,
+        site.fournisseur,
+        site.antenne,
+        site.alimentation,
+        site.acces
+      ]),
+      ...this.docFinanciereData ? [[
+        this.docFinanciereData.propritere,
+        this.docFinanciereData.montant,
+        this.docFinanciereData.datecontract,
+        this.docFinanciereData.datemaj,
+        this.docFinanciereData.contract
+      ]] : [],
+      ...this.archiveData ? [[
+        this.archiveData.propritere,
+        this.archiveData.montant,
+        this.archiveData.datecontract,
+        this.archiveData.datemaj,
+        this.archiveData.contract
+      ]] : []
+    ];
 
+    const csv = Papa.unparse({
+      fields: ['Id Site', 'Nom Site', 'Region', 'Delegation', 'Secteur', 'X', 'Y', 'Fournisseur', 'Antenne', 'Alimentation', 'Acces'],
+      data: combinedData
+    });
 
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute('download', 'report.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  // Exporter en Excel
+  exportToExcel(): void {
+    // Combinez toutes les données en un seul tableau
+    const combinedData = [
+      ['Id Site', 'Nom Site', 'Region', 'Delegation', 'Secteur', 'X', 'Y', 'Fournisseur', 'Antenne', 'Alimentation', 'Acces'],
+      ...this.siteData.map(site => [
+        site.idSite,
+        site.nomsite,
+        site.region,
+        site.delegotion,
+        site.secteur,
+        site.x,
+        site.y,
+        site.fournisseur,
+        site.antenne,
+        site.alimentation,
+        site.acces
+      ]),
+      ...this.docFinanciereData ? [[
+        this.docFinanciereData.propritere,
+        this.docFinanciereData.montant,
+        this.docFinanciereData.datecontract,
+        this.docFinanciereData.datemaj,
+        this.docFinanciereData.contract
+      ]] : [],
+      ...this.archiveData ? [[
+        this.archiveData.propritere,
+        this.archiveData.montant,
+        this.archiveData.datecontract,
+        this.archiveData.datemaj,
+        this.archiveData.contract
+      ]] : []
+    ];
+
+    const ws = XLSX.utils.aoa_to_sheet(combinedData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Report');
+    XLSX.writeFile(wb, 'report.xlsx');
+  }
 }

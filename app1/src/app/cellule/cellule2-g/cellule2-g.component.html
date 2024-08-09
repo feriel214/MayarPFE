@@ -29,7 +29,7 @@
   </div>
 </div>
 
-<div class="breadcome-area" style="margin-top: 6%; height: 70px">
+<div class="breadcome-area" style="margin-top: 2%; height: 70px">
   <!-- Header breadcrumb area -->
 </div>
 
@@ -47,59 +47,67 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <div class="review-content-section">
                     <div id="dropzone1" class="pro-ad">
+                      <h4 style="font-size: 20px; margin-bottom: 20px">
+                        Cellule 2G
+                      </h4>
                       <!-- Original Form -->
                       <div *ngIf="!showUpdateForm">
-                        <div class="form-group">
-                          <label for="region">Région</label>
-                          <select
-                            id="region"
-                            class="form-control"
-                            [(ngModel)]="site.region"
-                            (change)="updateDelegations()"
-                          >
-                            <option
-                              *ngFor="let region of regions"
-                              [value]="region"
-                            >
-                              {{ region }}
-                            </option>
-                          </select>
+                        <div class="row">
+                          <div class="col-lg-4">
+                            <div class="form-group">
+                              <label for="region">Région</label>
+                              <select
+                                id="region"
+                                class="form-control"
+                                [(ngModel)]="site.region"
+                                (change)="updateDelegations()"
+                              >
+                                <option
+                                  *ngFor="let region of regions"
+                                  [value]="region"
+                                >
+                                  {{ region }}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-lg-4">
+                            <div class="form-group">
+                              <label for="delegation">Délégation</label>
+                              <select
+                                id="delegation"
+                                class="form-control"
+                                [(ngModel)]="site.delegotion"
+                                (change)="updateSites()"
+                              >
+                                <option
+                                  *ngFor="let delegation of delegotions"
+                                  [value]="delegation"
+                                >
+                                  {{ delegation }}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-lg-4">
+                            <div class="form-group">
+                              <label for="sites">Sites</label>
+                              <select
+                                id="sites"
+                                class="form-control"
+                                [(ngModel)]="site.nomsite"
+                                (ngModelChange)="storecodesite($event)"
+                              >
+                                <option
+                                  *ngFor="let site of sites"
+                                  [value]="site.codesite"
+                                >
+                                  {{ site.nomsite }}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
                         </div>
-
-                        <div class="form-group">
-                          <label for="delegation">Délégation</label>
-                          <select
-                            id="delegation"
-                            class="form-control"
-                            [(ngModel)]="site.delegotion"
-                            (change)="updateSites()"
-                          >
-                            <option
-                              *ngFor="let delegation of delegotions"
-                              [value]="delegation"
-                            >
-                              {{ delegation }}
-                            </option>
-                          </select>
-                        </div>
-
-                        <div class="form-group">
-                          <label for="sites">Sites</label>
-                          <select
-                            id="sites"
-                            class="form-control"
-                            [(ngModel)]="site.nomsite"
-                            (ngModelChange)="storecodesite($event)"
-                          >
-                            <option
-                              *ngFor="let site of sites"
-                              [value]="site.codesite"
-                            >
-                              {{ site.nomsite }}
-                            </option>
-                          </select>
-                        </div>
-
                         <div class="row">
                           <!-- Code Cellule -->
                           <div class="form-group col-lg-6">
@@ -204,6 +212,7 @@
                           <button
                             class="btn btn-success myBtn"
                             (click)="storeCellule()"
+                            style="background-color: #34baa1"
                           >
                             Enregistrer
                           </button>
@@ -373,6 +382,7 @@
                           <button
                             class="btn btn-success myBtn"
                             (click)="updateData()"
+                            style="background-color: #34baa1"
                           >
                             Enregistrer
                           </button>

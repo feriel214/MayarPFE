@@ -6,11 +6,12 @@ import { Component} from '@angular/core';
   styleUrls: ['./dashboard-admin.component.css']
 })
 export class DashboardAdminComponent {
-  isDropdownOpen = false;
+  activeDropdown: string | null = null;
 
-  toggleDropdown(event: Event): void {
+  toggleDropdown(event: Event, dropdown: string): void {
     event.preventDefault(); // Prevent default link behavior
-    this.isDropdownOpen = !this.isDropdownOpen;
+    this.activeDropdown = this.activeDropdown === dropdown ? null : dropdown;
   }
+  
 
 }

@@ -1,85 +1,98 @@
-/* General table styles */
-.table {
-    width: 100%;
-    margin-bottom: 1rem;
-    background-color: transparent;
-    border-collapse: collapse;
+.asset-inner {
+    padding: 20px;
+    background-color: #ffffff; /* Background color */
+    border-radius: 5px;
   }
   
-  /* Table header styles */
+  .table-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f8f9fa;
+  }
+  
+  .table thead {
+    background-color: #e9ecef;
+  }
+  
   .table thead th {
-    background-color: #343a40;
-    color: #fff;
+    padding: 12px;
     text-align: left;
-    padding: 0.75rem;
-    vertical-align: top;
-    border-top: 1px solid #dee2e6;
+    color: #495057;
     border-bottom: 2px solid #dee2e6;
   }
   
-  /* Table body styles */
-  .table tbody tr:nth-of-type(odd) {
-    background-color: rgba(0, 0, 0, 0.05);
-  }
-  
-  .table tbody td {
-    padding: 0.75rem;
-    vertical-align: top;
-    border-top: 1px solid #dee2e6;
-  }
-  
-  /* Table hover styles */
-  .table tbody tr:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Additional styling */
-  .table {
-    border: 1px solid #dee2e6;
-    border-radius: 0.25rem;
-    overflow: hidden;
-  }
-  
-  .table th,
-  .table td {
-    padding: 0.75rem;
-    text-align: center;
-    border: 1px solid #dee2e6;
-  }
-  
-  .table th {
-    background-color: #f8f9fa;
-    font-weight: bold;
-  }
-  
-  .table-responsive {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
-  }
-  
-  .breadcome-area {
-    background-color: #f8f9fa;
-    padding: 1rem 0;
+  .table tbody tr {
     border-bottom: 1px solid #dee2e6;
-    margin-bottom: 1rem;
   }
   
-  .breadcome-heading form {
-    display: flex;
-    align-items: center;
+  .table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
   }
   
-  .breadcome-heading input {
-    margin-right: 0.5rem;
-    border-radius: 0.25rem;
-    border: 1px solid #ced4da;
-    padding: 0.5rem 1rem;
+  .table tbody tr:hover {
+    background-color: #e9ecef;
   }
   
-  .breadcome-heading a {
-    color: #343a40;
+  .table td {
+    padding: 12px;
+    text-align: left;
   }
   
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+  }
+  
+  .table-bordered {
+    border: 1px solid #dee2e6;
+  }
+  
+  .table-bordered th,
+  .table-bordered td {
+    border: 1px solid #dee2e6;
+  }
+  
+  .table a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .table a:hover {
+    text-decoration: underline;
+  }
+  
+
+  /* Ensure dropdown button is styled properly */
+.btn-group .btn {
+  border-radius: 0;
+}
+
+/* Style the dropdown menu */
+.dropdown-menu {
+  border: 1px solid #ddd;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Style individual dropdown items */
+.dropdown-item {
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+/* Change background color on hover */
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+/* Adjust dropdown menu positioning */
+.btn-group .dropdown-menu {
+  margin-top: 0;
+}

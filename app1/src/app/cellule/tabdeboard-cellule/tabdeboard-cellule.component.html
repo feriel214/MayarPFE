@@ -1,182 +1,310 @@
-<div class="breadcome-area" style="margin-top: 6%; height: 70px;">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="breadcome-list single-page-breadcome">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="breadcome-heading">
-                                <form role="search" class="sr-input-func">
-                                    <input type="text" placeholder="Search..." class="search-int form-control">
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <ul class="breadcome-menu">
-                                <li><span class="bread-blod">Accueil / TB</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+<div class="breadcome-area" style="margin-top: 6%; height: 70px">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="breadcome-list single-page-breadcome">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <div class="breadcome-heading">
+                <form role="search" class="sr-input-func">
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    class="search-int form-control"
+                  />
+                  <a href="#"><i class="fa fa-search"></i></a>
+                </form>
+              </div>
             </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <ul class="breadcome-menu">
+                <li><span class="bread-blod">Accueil / TB</span></li>
+              </ul>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="single-pro-review-area mt-t-30 mg-b-15">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="product-payment-inner-st">
-                    <div id="myTabContent" class="tab-content custom-product-edit">
-                        <div class="product-tab-list tab-pane fade active in" id="description">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="review-content-section">
-                                        <div id="dropzone1" class="pro-ad">
-                                            <div>
-                                                <div class="form-group col-lg-2">
-                                                    <label for="region">Région</label>
-                                                    <select id="region" class="form-control" [(ngModel)]="site.region" (change)="updateDelegations()">
-                                                        <option *ngFor="let region of regions" [value]="region">{{ region }}</option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group col-lg-2">
-                                                    <label for="delegation">Délégation</label>
-                                                    <select id="delegation" class="form-control" [(ngModel)]="site.delegotion" (change)="updateFournisseur()">
-                                                        <option *ngFor="let delegation of delegotions" [value]="delegation">{{ delegation }}</option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group col-lg-2">
-                                                    <label for="fournisseur">Fournisseur</label>
-                                                    <select id="fournisseur" class="form-control" [(ngModel)]="site.fournisseur" (ngModelChange)="updateSites()">
-                                                        <option *ngFor="let fournisseur of fournisseurs" [value]="fournisseur">{{ fournisseur }}</option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group col-lg-2">
-                                                    <label for="sites">Sites</label>
-                                                    <select id="sites" class="form-control" [(ngModel)]="site.nomsite" (ngModelChange)="storecodesite($event)">
-                                                        <option *ngFor="let site of sites" [value]="site.codesite">{{ site.nomsite }}</option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group col-lg-2">
-                                                    <label for="cellules">Technologie</label>
-                                                    <select id="cellules" class="form-control" [(ngModel)]="selectedidCel" (change)="onCelluleSelect($event)">
-                                                        <option *ngFor="let cellule of cellules" [value]="cellule">{{ cellule }}</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="selectedTechnology === 'Cellule2G' && celluleData.length > 0">
-                                                <h3>2G Cellule Data</h3>
-                                                <div class="table-responsive">
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Azimuth</th>
-                                                                <th>Bande</th>
-                                                                <th>BCCH</th>
-                                                                <th>Code Cellule</th>
-                                                                <th>LAC</th>
-                                                                <th>MLT</th>
-                                                                <th>Nom Cellule</th>
-                                                                <th>Power</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr *ngFor="let Data of celluleData">
-                                                                <td>{{ Data.azimuth }}</td>
-                                                                <td>{{ Data.bande }}</td>
-                                                                <td>{{ Data.bcch }}</td>
-                                                                <td>{{ Data.codeCellule }}</td>
-                                                                <td>{{ Data.lac }}</td>
-                                                                <td>{{ Data.mlt }}</td>
-                                                                <td>{{ Data.nomCellule }}</td>
-                                                                <td>{{ Data.power }}</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-
-                                            <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  *ngIf="selectedTechnology === 'Cellule3G' && celluleData.length > 0">
-                                                <h3>3G Cellule Data</h3>
-                                                <div class="table-responsive">
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Azimuth</th>
-                                                                <th>Bande</th>
-                                                                <th>Code Cellule</th>
-                                                                <th>MLT</th>
-                                                                <th>Nom Cellule</th>
-                                                                <th>Power</th>
-                                                                <th>SC</th>
-                                                                <th>TAC</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr *ngFor="let Data of celluleData">
-                                                                <td>{{ Data.azimuth }}</td>
-                                                                <td>{{ Data.bande }}</td>
-                                                                <td>{{ Data.codeCellule }}</td>
-                                                                <td>{{ Data.mlt }}</td>
-                                                                <td>{{ Data.nomCellule }}</td>
-                                                                <td>{{ Data.power }}</td>
-                                                                <td>{{ Data.sc }}</td>
-                                                                <td>{{ Data.tac }}</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-
-                                            <div   class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  *ngIf="selectedTechnology === 'Cellule4G' && celluleData.length > 0">
-                                                <h3>4G Cellule Data</h3>
-                                                <div class="table-responsive">
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>EnodB</th>
-                                                                <th>Azimuth</th>
-                                                                <th>Bande</th>
-                                                                <th>Code Cellule</th>
-                                                                <th>MLT</th>
-                                                                <th>Nom Cellule</th>
-                                                                <th>Power</th>
-                                                                <th>SC</th>
-                                                                <th>TAC</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr *ngFor="let Data of celluleData">
-                                                                <td>{{ Data.EnodB }}</td>
-                                                                <td>{{ Data.azimuth }}</td>
-                                                                <td>{{ Data.bande }}</td>
-                                                                <td>{{ Data.codeCellule }}</td>
-                                                                <td>{{ Data.mlt }}</td>
-                                                                <td>{{ Data.nomCellule }}</td>
-                                                                <td>{{ Data.power }}</td>
-                                                                <td>{{ Data.sc }}</td>
-                                                                <td>{{ Data.tac }}</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="product-payment-inner-st">
+          <div id="myTabContent" class="tab-content custom-product-edit">
+            <div
+              class="product-tab-list tab-pane fade active in"
+              id="description"
+            >
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="review-content-section">
+                    <div id="dropzone1" class="pro-ad">
+                      <div>
+                        <div class="form-group col-lg-2">
+                          <label for="region">Région</label>
+                          <select
+                            id="region"
+                            class="form-control"
+                            [(ngModel)]="site.region"
+                            (change)="updateDelegations()"
+                          >
+                            <option
+                              *ngFor="let region of regions"
+                              [value]="region"
+                            >
+                              {{ region }}
+                            </option>
+                          </select>
                         </div>
+
+                        <div class="form-group col-lg-2">
+                          <label for="delegation">Délégation</label>
+                          <select
+                            id="delegation"
+                            class="form-control"
+                            [(ngModel)]="site.delegotion"
+                            (change)="updateFournisseur()"
+                          >
+                            <option
+                              *ngFor="let delegation of delegotions"
+                              [value]="delegation"
+                            >
+                              {{ delegation }}
+                            </option>
+                          </select>
+                        </div>
+
+                        <div class="form-group col-lg-2">
+                          <label for="fournisseur">Fournisseur</label>
+                          <select
+                            id="fournisseur"
+                            class="form-control"
+                            [(ngModel)]="site.fournisseur"
+                            (ngModelChange)="updateSites()"
+                          >
+                            <option
+                              *ngFor="let fournisseur of fournisseurs"
+                              [value]="fournisseur"
+                            >
+                              {{ fournisseur }}
+                            </option>
+                          </select>
+                        </div>
+
+                        <div class="form-group col-lg-2">
+                          <label for="sites">Sites</label>
+                          <select
+                            id="sites"
+                            class="form-control"
+                            [(ngModel)]="site.nomsite"
+                            (ngModelChange)="storecodesite($event)"
+                          >
+                            <option
+                              *ngFor="let site of sites"
+                              [value]="site.codesite"
+                            >
+                              {{ site.nomsite }}
+                            </option>
+                          </select>
+                        </div>
+
+                        <div class="form-group col-lg-2">
+                          <label for="cellules">Technologie</label>
+                          <select
+                            id="cellules"
+                            class="form-control"
+                            [(ngModel)]="selectedidCel"
+                            (change)="onCelluleSelect($event)"
+                          >
+                            <option
+                              *ngFor="let cellule of cellules"
+                              [value]="cellule"
+                            >
+                              {{ cellule }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <!-- Boutons d'exportation -->
+                      <!-- <div class="form-group col-lg-12">
+                        <button class="btn btn-primary" (click)="exportToPDF()">
+                          Exporter en PDF
+                        </button>
+                        <button
+                          class="btn btn-secondary"
+                          (click)="exportToCSV()"
+                        >
+                          Exporter en CSV
+                        </button>
+                        <button
+                          class="btn btn-success"
+                          (click)="exportToExcel()"
+                        >
+                          Exporter en Excel
+                        </button>
+                      </div> -->
+                      <!-- Dropdown for Export Options -->
+                      <div class="form-group col-lg-12">
+                        <div class="btn-group">
+                          <button
+                            type="button"
+                            class="btn btn-primary dropdown-toggle"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            Exporter
+                          </button>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" (click)="exportToPDF()"
+                              >Exporter en PDF</a
+                            >
+                            <a class="dropdown-item" (click)="exportToCSV()"
+                              >Exporter en CSV</a
+                            >
+                            <a class="dropdown-item" (click)="exportToExcel()"
+                              >Exporter en Excel</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Tables de données -->
+                      <div
+                        class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                        *ngIf="
+                          selectedTechnology === 'Cellule2G' &&
+                          celluleData.length > 0
+                        "
+                      >
+                        <h3 style="font-size: 20px; margin-bottom: 20px">
+                          2G Cellule Data
+                        </h3>
+                        <div class="table-responsive">
+                          <div class="table-container">
+                            <table class="table table-bordered table-striped">
+                              <thead>
+                                <tr>
+                                  <th>Azimuth</th>
+                                  <th>Bande</th>
+                                  <th>BCCH</th>
+                                  <th>Code Cellule</th>
+                                  <th>LAC</th>
+                                  <th>MLT</th>
+                                  <th>Nom Cellule</th>
+                                  <th>Power</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let Data of celluleData">
+                                  <td>{{ Data.azimuth }}</td>
+                                  <td>{{ Data.bande }}</td>
+                                  <td>{{ Data.bcch }}</td>
+                                  <td>{{ Data.codeCellule }}</td>
+                                  <td>{{ Data.lac }}</td>
+                                  <td>{{ Data.mlt }}</td>
+                                  <td>{{ Data.nomCellule }}</td>
+                                  <td>{{ Data.power }}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                        *ngIf="
+                          selectedTechnology === 'Cellule3G' &&
+                          celluleData.length > 0
+                        "
+                      >
+                        <h3 style="font-size: 20px; margin-bottom: 20px">
+                          3G Cellule Data
+                        </h3>
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Azimuth</th>
+                                <th>Bande</th>
+                                <th>Code Cellule</th>
+                                <th>MLT</th>
+                                <th>Nom Cellule</th>
+                                <th>Power</th>
+                                <th>SC</th>
+                                <th>TAC</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let Data of celluleData">
+                                <td>{{ Data.azimuth }}</td>
+                                <td>{{ Data.bande }}</td>
+                                <td>{{ Data.codeCellule }}</td>
+                                <td>{{ Data.mlt }}</td>
+                                <td>{{ Data.nomCellule }}</td>
+                                <td>{{ Data.power }}</td>
+                                <td>{{ Data.sc }}</td>
+                                <td>{{ Data.tac }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+
+                      <div
+                        class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                        *ngIf="
+                          selectedTechnology === 'Cellule4G' &&
+                          celluleData.length > 0
+                        "
+                      >
+                        <h3 style="font-size: 20px; margin-bottom: 20px">
+                          4G Cellule Data
+                        </h3>
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>EnodB</th>
+                                <th>Azimuth</th>
+                                <th>Bande</th>
+                                <th>Code Cellule</th>
+                                <th>MLT</th>
+                                <th>Nom Cellule</th>
+                                <th>Power</th>
+                                <th>SC</th>
+                                <th>TAC</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let Data of celluleData">
+                                <td>{{ Data.EnodB }}</td>
+                                <td>{{ Data.azimuth }}</td>
+                                <td>{{ Data.bande }}</td>
+                                <td>{{ Data.codeCellule }}</td>
+                                <td>{{ Data.mlt }}</td>
+                                <td>{{ Data.nomCellule }}</td>
+                                <td>{{ Data.power }}</td>
+                                <td>{{ Data.sc }}</td>
+                                <td>{{ Data.tac }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>

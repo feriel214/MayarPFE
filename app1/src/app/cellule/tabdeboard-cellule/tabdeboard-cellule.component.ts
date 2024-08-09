@@ -3,20 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { SiteService } from 'src/app/service/site.service';
 import Swal from 'sweetalert2';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-tabdeboard-cellule',
@@ -142,85 +131,7 @@ export class TabdeboardCelluleComponent {
 
 
 
-  // onCelluleSelect(event: Event): void {
-  //   const selectElement = event.target as HTMLSelectElement;
-  //   const cellule = selectElement.value;
-
-  //   if (cellule === 'Cellule2G') {
-  //     this.siteService.getcel2GByCode(this.selectedSiteCode).subscribe(
-  //       response => {
-  //         console.log('2G data:', response);
-  //         // Traitez la réponse ici
-  //       },
-  //       error => {
-  //         console.error('Error fetching 2G data:', error);
-  //       }
-  //     );
-  //   } else if (cellule === 'Cellule3G') {
-  //     this.siteService.getcel3GByCode(this.selectedSiteCode).subscribe(
-  //       response => {
-  //         console.log('3G data:', response);
-  //         // Traitez la réponse ici
-  //       },
-  //       error => {
-  //         console.error('Error fetching 3G data:', error);
-  //       }
-  //     );
-  //   } else if (cellule === 'Cellule4G') {
-  //     this.siteService.getcel4GByCode(this.selectedSiteCode).subscribe(
-  //       response => {
-  //         console.log('4G data:', response);
-  //         // Traitez la réponse ici
-  //       },
-  //       error => {
-  //         console.error('Error fetching 4G data:', error);
-  //       }
-  //     );
-  //   }
-  // }
-
-
-
-
-
-
-  // onCelluleSelect(event: Event): void {
-  //   const selectElement = event.target as HTMLSelectElement;
-  //   const cellule = selectElement.value;
-
-  //   if (cellule === 'Cellule2G') {
-  //     this.siteService.getcel2GByCode(this.selectedSiteCode).subscribe(
-  //       response => {
-  //         console.log('2G data:', response);
-  //         this.celluleData = response; // Store data in celluleData
-  //       },
-  //       error => {
-  //         console.error('Error fetching 2G data:', error);
-  //       }
-  //     );
-  //   } else if (cellule === 'Cellule3G') {
-  //     this.siteService.getcel3GByCode(this.selectedSiteCode).subscribe(
-  //       response => {
-  //         console.log('3G data:', response);
-  //         this.celluleData = response; // Store data in celluleData
-  //       },
-  //       error => {
-  //         console.error('Error fetching 3G data:', error);
-  //       }
-  //     );
-  //   } else if (cellule === 'Cellule4G') {
-  //     this.siteService.getcel4GByCode(this.selectedSiteCode).subscribe(
-  //       response => {
-  //         console.log('4G data:', response);
-  //         this.celluleData = response; // Store data in celluleData
-  //       },
-  //       error => {
-  //         console.error('Error fetching 4G data:', error);
-  //       }
-  //     );
-  //   }
-  // }
-
+  
 
 
   onCelluleSelect(event: Event): void {
@@ -264,7 +175,58 @@ export class TabdeboardCelluleComponent {
   }
 
 
+  exportToPDF(): void {
+    const doc = new jsPDF();
+    
+    autoTable(doc, {
+      head: [['Azimuth', 'Bande', 'BCCH', 'Code Cellule', 'LAC', 'MLT', 'Nom Cellule', 'Power']],
+      body: this.celluleData.map((data: any) => [
+        data.azimuth,
+        data.bande,
+        data.bcch,
+        data.codeCellule,
+        data.lac,
+        data.mlt,
+        data.nomCellule,
+        data.power
+      ]),
+    });
+    
+    doc.save('cellule-data.pdf');
+  }
 
+  exportToCSV(): void {
+    const csvData = this.convertToCSV(this.celluleData);
+    const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
+    saveAs(blob, 'cellule-data.csv');
+  }
+
+  convertToCSV(data: any): string {
+    const header = ['Azimuth', 'Bande', 'BCCH', 'Code Cellule', 'LAC', 'MLT', 'Nom Cellule', 'Power'];
+    const csvRows = [header.join(',')];
+    
+    data.forEach((row: any) => {
+      const values = [
+        row.azimuth,
+        row.bande,
+        row.bcch,
+        row.codeCellule,
+        row.lac,
+        row.mlt,
+        row.nomCellule,
+        row.power
+      ];
+      csvRows.push(values.join(','));
+    });
+
+    return csvRows.join('\n');
+  }
+
+  exportToExcel(): void {
+    const csvData = this.convertToCSV(this.celluleData);
+    const blob = new Blob([csvData], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8;' });
+    saveAs(blob, 'cellule-data.xlsx');
+  }
 
 
 
@@ -273,3 +235,90 @@ export class TabdeboardCelluleComponent {
 
 
 }
+
+
+
+
+
+
+
+
+
+// onCelluleSelect(event: Event): void {
+  //   const selectElement = event.target as HTMLSelectElement;
+  //   const cellule = selectElement.value;
+
+  //   if (cellule === 'Cellule2G') {
+  //     this.siteService.getcel2GByCode(this.selectedSiteCode).subscribe(
+  //       response => {
+  //         console.log('2G data:', response);
+  //         // Traitez la réponse ici
+  //       },
+  //       error => {
+  //         console.error('Error fetching 2G data:', error);
+  //       }
+  //     );
+  //   } else if (cellule === 'Cellule3G') {
+  //     this.siteService.getcel3GByCode(this.selectedSiteCode).subscribe(
+  //       response => {
+  //         console.log('3G data:', response);
+  //         // Traitez la réponse ici
+  //       },
+  //       error => {
+  //         console.error('Error fetching 3G data:', error);
+  //       }
+  //     );
+  //   } else if (cellule === 'Cellule4G') {
+  //     this.siteService.getcel4GByCode(this.selectedSiteCode).subscribe(
+  //       response => {
+  //         console.log('4G data:', response);
+  //         // Traitez la réponse ici
+  //       },
+  //       error => {
+  //         console.error('Error fetching 4G data:', error);
+  //       }
+  //     );
+  //   }
+  // }
+
+
+
+
+
+
+  // onCelluleSelect(event: Event): void {
+  //   const selectElement = event.target as HTMLSelectElement;
+  //   const cellule = selectElement.value;
+
+  //   if (cellule === 'Cellule2G') {
+  //     this.siteService.getcel2GByCode(this.selectedSiteCode).subscribe(
+  //       response => {
+  //         console.log('2G data:', response);
+  //         this.celluleData = response; // Store data in celluleData
+  //       },
+  //       error => {
+  //         console.error('Error fetching 2G data:', error);
+  //       }
+  //     );
+  //   } else if (cellule === 'Cellule3G') {
+  //     this.siteService.getcel3GByCode(this.selectedSiteCode).subscribe(
+  //       response => {
+  //         console.log('3G data:', response);
+  //         this.celluleData = response; // Store data in celluleData
+  //       },
+  //       error => {
+  //         console.error('Error fetching 3G data:', error);
+  //       }
+  //     );
+  //   } else if (cellule === 'Cellule4G') {
+  //     this.siteService.getcel4GByCode(this.selectedSiteCode).subscribe(
+  //       response => {
+  //         console.log('4G data:', response);
+  //         this.celluleData = response; // Store data in celluleData
+  //       },
+  //       error => {
+  //         console.error('Error fetching 4G data:', error);
+  //       }
+  //     );
+  //   }
+  // }
