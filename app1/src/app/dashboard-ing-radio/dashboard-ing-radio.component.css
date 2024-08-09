@@ -1,0 +1,137 @@
+.nav-item a {
+    color: #214787; /* Text color */
+   /* background-color: #f4f4f4; /* Background color */
+    border-radius: 4px; /* Rounded corners */
+    padding: 8px 12px; /* Spacing inside the link */
+    text-decoration: none; /* Remove underline */
+    display: flex; /* Align items horizontally */
+    align-items: center; /* Vertically center items */
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+  
+  .nav-item a.active {
+   /* background-color: #ccc; /* Change background color when active */
+  }
+  
+  .nav-item.open > a {
+    background-color: inherit; /* Keep default background color */
+  }
+  
+  /* Style the dropdown menu */
+  .submenu-angle {
+    display: none; /* Hide dropdown by default */
+    position: absolute; /* Position it relative to the parent */
+    background-color: #f4f4f4; /* Background color of dropdown */
+    border-radius: 4px; /* Rounded corners */
+    top: 100%; /* Position below the parent */
+    left: 0; /* Align with left edge */
+    padding: 0; /* No padding */
+    list-style: none; /* Remove bullet points */
+    width: 100%; /* Same width as parent */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    z-index: 1000; /* Ensure it appears above other content */
+  }
+  
+  .nav-item.open .submenu-angle {
+    display: block; /* Show dropdown when open */
+  }
+  
+  /* Style for dropdown items */
+  .submenu-angle li a {
+    display: block; /* Make links block level */
+    color: #214787; /* Text color */
+    padding: 8px 12px; /* Padding inside dropdown items */
+    text-decoration: none; /* Remove underline */
+  }
+  
+  /* Hover effect for dropdown items */
+  .submenu-angle li a:hover {
+    background-color: #e3e3e3; /* Background on hover */
+    color: #214787; /* Text color on hover */
+  }
+  
+  /* Style for submenu items (nested dropdowns) */
+  .submenu-angle .submenu-angle {
+    position: absolute; /* Position relative to the parent */
+    left: 100%; /* Position to the right of parent */
+    top: 0; /* Align with top of parent */
+    display: none; /* Hide by default */
+  }
+  
+  /* Show submenu on hover */
+  .submenu-angle li:hover .submenu-angle {
+    display: block; /* Show submenu */
+  }
+  
+  
+  .nav-icon {
+    width: 32px; /* Largeur uniforme pour toutes les icônes */
+    height: 32px; /* Hauteur uniforme pour toutes les icônes */
+    object-fit: contain; /* Maintient les proportions de l'image */
+  }
+  
+  .nav-item a {
+    color: #214787; /* Text color */
+   /* background-color: #f4f4f4; /* Background color */
+    border-radius: 4px; /* Rounded corners */
+    padding: 8px 12px; /* Spacing inside the link */
+    text-decoration: none; /* Remove underline */
+    display: flex; /* Align items horizontally */
+    align-items: center; /* Vertically center items */
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+  
+  .nav-item a.active {
+  /*  background-color: #ccc; /* Change background color when active */
+  }
+  
+  .nav-item.open > a {
+    background-color: inherit; /* Keep default background color */
+  }
+  
+  /* Style the dropdown menu */
+  .submenu-angle {
+    display: none; /* Hide dropdown by default */
+    position: absolute; /* Position it relative to the parent */
+  /*  background-color: #f4f4f4; /* Background color of dropdown */
+    border-radius: 4px; /* Rounded corners */
+    top: 100%; /* Position below the parent */
+    left: 0; /* Align with left edge */
+    padding: 0; /* No padding */
+    list-style: none; /* Remove bullet points */
+    width: 100%; /* Same width as parent */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    z-index: 1000; /* Ensure it appears above other content */
+  }
+  
+  .nav-item.open .submenu-angle {
+    display: block; /* Show dropdown when open */
+  }
+  
+  /* Style for dropdown items */
+  .submenu-angle li a {
+    display: block; /* Make links block level */
+    color: #214787; /* Text color */
+    padding: 8px 12px; /* Padding inside dropdown items */
+    text-decoration: none; /* Remove underline */
+  }
+  
+  /* Hover effect for dropdown items */
+  .submenu-angle li a:hover {
+    background-color: #e3e3e3; /* Background on hover */
+    color: #214787; /* Text color on hover */
+  }
+  
+  /* Style for submenu items (nested dropdowns) */
+  .submenu-angle .submenu-angle {
+    position: absolute; /* Position relative to the parent */
+    left: 100%; /* Position to the right of parent */
+    top: 0; /* Align with top of parent */
+    display: none; /* Hide by default */
+  }
+  
+  /* Show submenu on hover */
+  .submenu-angle li:hover .submenu-angle {
+    display: block; /* Show submenu */
+  }
+  

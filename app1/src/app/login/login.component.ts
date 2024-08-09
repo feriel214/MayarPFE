@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
             } else if (response.utilisateur.profil === 'ingénieur') {
               this.router.navigate(['/ingRadio/list/sites']);
             } else if (response.utilisateur.profil === 'financier') {
-              this.router.navigate(['/ingRadio/tbsite']);
+              this.router.navigate(['/financier/tbsite']);
             }
           }
         },

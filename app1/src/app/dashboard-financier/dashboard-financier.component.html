@@ -1,54 +1,46 @@
 <div class="left-sidebar-pro">
   <nav id="sidebar" class="">
     <div class="sidebar-header">
-      <a href="index.html"
-        ><img class="main-logo" src="img/logo/logo.png" alt=""
-      /></a>
-      <strong
-        ><a href="index.html"><img src="img/logo/logosn.png" alt="" /></a
-      ></strong>
+      <a href="index.html">
+        <img
+          class="main-logo"
+          src="assets/images/TT2.png"
+          width="100px"
+          height="80px"
+          style="margin-top: 15px"
+          alt=""
+        />
+      </a>
+      <strong>
+        <a href="index.html">
+          <img src="img/logo/logosn.png" alt="" />
+        </a>
+      </strong>
     </div>
-    <div class="left-custom-menu-adp-wrap comment-scrollbar">
+    <div
+      class="left-custom-menu-adp-wrap comment-scrollbar"
+      style="margin-top: 25px"
+    >
       <nav class="sidebar-nav left-sidebar-menu-pro">
         <ul class="metismenu" id="menu1">
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="educationDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <span class="educate-icon educate-home icon-wrap"></span>
-              <span class="mini-click-non">DASH</span>
+          <li class="nav-item">
+            <a routerLink="/financier/docfinsite">
+              <img class="nav-icon" src="assets/icons/docfin.png" alt="" />
+              <span class="mini-click-non">Doc Financière Site</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/financier/tbsite">
+              <img class="nav-icon" src="assets/icons/site.png" alt="" />
+              <span class="mini-click-non">TB Site</span>
             </a>
           </li>
 
-          <li>
-            <a routerLink="/financier/docfinsite" aria-expanded="false"
-              ><span class="educate-icon educate-form icon-wrap"></span>
-              <span class="mini-click-non">Doc Financiéres</span></a
-            >
-          </li>
-          <li>
-            <a aria-expanded="false"
-              ><span class="educate-icon educate-apps icon-wrap"></span>
-              <span class="mini-click-non">Tableaux De Bord</span></a
-            >
-            <ul class="submenu-angle app-mini-nb-dp" aria-expanded="false">
-              <li>
-                <a routerLink="/financier/tbsite"
-                  ><span class="mini-sub-pro">Sites</span></a
-                >
-              </li>
-              <li>
-                <a routerLink="/financier/tbCel"
-                  ><span class="mini-sub-pro">Cellules</span></a
-                >
-              </li>
-            </ul>
+          <li class="nav-item">
+            <a routerLink="/financier/tbCel">
+              <img class="nav-icon" src="assets/icons/cellule.png" alt="" />
+              <span class="mini-click-non">TB Cellule</span>
+            </a>
           </li>
         </ul>
       </nav>
@@ -63,7 +55,7 @@
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="logo-pro">
           <a href="index.html"
-            ><img class="main-logo" src="img/logo/logo.png" alt=""
+            ><img class="main-logo" src="assets/images/logo.png" alt=""
           /></a>
         </div>
       </div>
@@ -72,14 +64,4 @@
   <!-- menu navbar -->
   <app-navbar-admin></app-navbar-admin>
   <router-outlet></router-outlet>
-  <!-- <div class="footer-copyright-area">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="footer-copy-right"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
 </div>

@@ -1,85 +1,257 @@
 <div class="left-sidebar-pro">
-  <nav id="sidebar" class="">
+  <!-- <nav id="sidebar" class="">
     <div class="sidebar-header">
       <a href="index.html"
-        ><img class="main-logo" src="img/logo/logo.png" alt=""
+        ><img
+          class="main-logo"
+          src="assets/images/TT2.png"
+          width="100px"
+          height="80px"
+          style="margin-top: 15px"
+          alt=""
       /></a>
       <strong
         ><a href="index.html"><img src="img/logo/logosn.png" alt="" /></a
       ></strong>
     </div>
-    <div class="left-custom-menu-adp-wrap comment-scrollbar">
+    <div
+      class="left-custom-menu-adp-wrap comment-scrollbar"
+      style="margin-top: 25px"
+    >
       <nav class="sidebar-nav left-sidebar-menu-pro">
         <ul class="metismenu" id="menu1">
+          <li>
+            <a aria-expanded="false">
+              <img src="assets/icons/bi.png" alt="" />
+              <span class="mini-click-non">Tableaux De Bord BI</span>
+            </a>
+            <ul class="submenu-angle app-mini-nb-dp" aria-expanded="false">
+              <li>
+                <a routerLink="/ingRadio/tbsite">
+                  <span class="mini-sub-pro">Sites</span>
+                </a>
+              </li>
+              <li>
+                <a routerLink="/ingRadio/tbCel">
+                  <span class="mini-sub-pro">Cellules</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item" [class.open]="activeDropdown === 'sites'">
+            <a (click)="toggleDropdown($event, 'sites')">
+              <img
+                [class.show]="activeDropdown === 'sites'"
+                src="assets/icons/site.png"
+                alt=""
+              />
+              <span class="mini-click-non">Sites</span>
+            </a>
+            <ul class="submenu-angle app-mini-nb-dp">
+              <li>
+                <a routerLink="/ingRadio/list/sites">
+                  <span class="educate-icon educate-interface icon-wrap"></span>
+                  <span class="">Gérer Sites</span>
+                </a>
+              </li>
+              <li>
+                <a routerLink="/ingRadio/docsite">Doc Sites</a>
+              </li>
+              <li>
+                <a routerLink="/ingRadio/docfinsite">Doc Financières</a>
+              </li>
+              <li>
+                <a routerLink="/ingRadio/tbsite">Rapport</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item" [class.open]="activeDropdown === 'cellules'">
+            <a (click)="toggleDropdown($event, 'cellules')">
+              <img
+                [class.show]="activeDropdown === 'cellules'"
+                style="width: 50px; height: 50px"
+                src="assets/icons/cellule.png"
+                alt=""
+              />
+              <span class="mini-click-non">Cellules</span>
+            </a>
+            <ul class="submenu-angle app-mini-nb-dp">
+              <li>
+                <a routerLink="/ingRadio/cellule2G">Cellule 2G</a>
+              </li>
+              <li>
+                <a routerLink="/ingRadio/cellule3G">Cellule 3G</a>
+              </li>
+              <li>
+                <a routerLink="/ingRadio/cellule4G">Cellule 4G</a>
+              </li>
+              <li>
+                <a routerLink="/ingRadio/tbCel">Rapport</a>
+              </li>
+            </ul>
+          </li>
+
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
-              href="#"
-              id="educationDropdown"
+              routerLink="/ingRadio/list/users"
+              id="usersDropdown"
               role="button"
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
             >
-              <span class="educate-icon educate-home icon-wrap"></span>
-              <span class="mini-click-non">DASH</span>
+              <img
+                style="width: 50px; height: 50px"
+                src="assets/icons/user.png"
+                alt=""
+              />
+              <span class="mini-click-non">Gérer Utilisateurs</span>
             </a>
           </li>
 
           <li>
-            <a routerLink="/ingRadio/list/sites" aria-expanded="false"
-              ><span class="educate-icon educate-message icon-wrap"></span>
-              <span class="mini-click-non">Gérer Sites</span></a
-            >
+            <a routerLink="/ingRadio/list/delegations" aria-expanded="false">
+              <img
+                style="width: 50px; height: 50px"
+                src="assets/icons/region.png"
+                alt=""
+              />
+              <span class="mini-click-non">Gérer Délégations</span>
+            </a>
           </li>
+
           <li>
-            <a class="has-arrow" aria-expanded="false"
-              ><span class="educate-icon educate-interface icon-wrap"></span>
-              <span class="mini-click-non">Gérer Cellules</span></a
+            <a routerLink="/ingRadio/list/regions" aria-expanded="false">
+              <img
+                src="assets/images/toto.png"
+                alt=""
+                style="width: 32px; height: 40px"
+              />
+              <span class="mini-click-non">Gérer Régions</span>
+            </a>
+          </li>
+
+          <li>
+            <a routerLink="/ingRadio/list/fournisseurs" aria-expanded="false">
+              <img src="assets/icons/supplier.png" alt="" />
+              <span class="mini-click-non">Gérer Fournisseurs</span>
+            </a>
+          </li>
+
+          <li>
+            <a routerLink="/ingRadio/list/fournisseurs" aria-expanded="false">
+              <img src="assets/icons/ai.png" alt="" />
+              <span class="mini-click-non">Intelligence Artifiielle</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </nav> -->
+
+  <nav id="sidebar" class="">
+    <div class="sidebar-header">
+      <a href="index.html">
+        <img
+          class="main-logo"
+          src="assets/images/TT2.png"
+          width="100px"
+          height="80px"
+          style="margin-top: 15px"
+          alt=""
+        />
+      </a>
+      <strong>
+        <a href="index.html">
+          <img src="img/logo/logosn.png" alt="" />
+        </a>
+      </strong>
+    </div>
+    <div
+      class="left-custom-menu-adp-wrap comment-scrollbar"
+      style="margin-top: 25px"
+    >
+      <nav class="sidebar-nav left-sidebar-menu-pro">
+        <ul class="metismenu" id="menu1">
+          <li class="nav-item" [class.open]="activeDropdown === 'tb'">
+            <a aria-expanded="false" (click)="toggleDropdown($event, 'tb')">
+              <img class="nav-icon" src="assets/icons/bi.png" alt="" />
+              <span class="mini-click-non">Tableaux De Bord BI</span>
+            </a>
+            <ul
+              class="submenu-angle app-mini-nb-dp"
+              [class.show]="activeDropdown === 'tb'"
+              aria-expanded="false"
             >
-            <ul class="dropdown-toggle" aria-expanded="false">
               <li>
-                <a routerLink="/ingRadio/cellule2G"
-                  ><span class="mini-sub-pro">Cellules 2G</span></a
-                >
+                <a routerLink="/manager/tbsite">
+                  <span class="mini-sub-pro">Sites</span>
+                </a>
               </li>
               <li>
-                <a routerLink="/ingRadio/cellule3G"
-                  ><span class="mini-sub-pro">Cellules 3G</span></a
-                >
-              </li>
-              <li>
-                <a routerLink="/ingRadio/cellule4G"
-                  ><span class="mini-sub-pro">Cellules 4G</span></a
-                >
+                <a routerLink="/manager/tbCel">
+                  <span class="mini-sub-pro">Cellules</span>
+                </a>
               </li>
             </ul>
           </li>
 
-          <li>
-            <a aria-expanded="false"
-              ><span class="educate-icon educate-apps icon-wrap"></span>
-              <span class="mini-click-non">Tableaux De Bord</span></a
-            >
-            <ul class="submenu-angle app-mini-nb-dp" aria-expanded="false">
+          <li class="nav-item" [class.open]="activeDropdown === 'sites'">
+            <a (click)="toggleDropdown($event, 'sites')">
+              <img
+                class="nav-icon"
+                [class.show]="activeDropdown === 'sites'"
+                src="assets/icons/site.png"
+                alt=""
+              />
+              <span class="mini-click-non">Sites</span>
+            </a>
+            <ul class="submenu-angle app-mini-nb-dp">
               <li>
-                <a routerLink="/ingRadio/tbsite"
-                  ><span class="mini-sub-pro">Sites</span></a
-                >
+                <a routerLink="/ingRadio/list/sites">
+                  <span class="educate-icon educate-interface icon-wrap"></span>
+                  <span class="">Gérer Sites</span>
+                </a>
               </li>
               <li>
-                <a routerLink="/ingRadio/tbCel"
-                  ><span class="mini-sub-pro">Cellules</span></a
-                >
+                <a routerLink="/ingRadio/docsite">Doc Sites</a>
+              </li>
+              <li>
+                <a routerLink="/ingRadio/docfinsite">Doc Financières</a>
+              </li>
+              <li>
+                <a routerLink="/ingRadio/tbsite">Rapport</a>
               </li>
             </ul>
           </li>
 
-          <li>
-            <a routerLink="/ingRadio/" aria-expanded="false"
-              ><span class="educate-icon educate-apps icon-wrap"></span>
-              <span class="mini-click-non">BI</span></a
-            >
+          <li class="nav-item" [class.open]="activeDropdown === 'cellules'">
+            <a (click)="toggleDropdown($event, 'cellules')">
+              <img
+                class="nav-icon"
+                [class.show]="activeDropdown === 'cellules'"
+                src="assets/icons/cellule.png"
+                alt=""
+              />
+              <span class="mini-click-non">Cellules</span>
+            </a>
+            <ul class="submenu-angle app-mini-nb-dp">
+              <li>
+                <a routerLink="/ingRadio/cellule2G">Cellule 2G</a>
+              </li>
+              <li>
+                <a routerLink="/ingRadio/cellule3G">Cellule 3G</a>
+              </li>
+              <li>
+                <a routerLink="/ingRadio/cellule4G">Cellule 4G</a>
+              </li>
+              <li>
+                <a routerLink="/ingRadio/tbCel">Rapport</a>
+              </li>
+            </ul>
           </li>
         </ul>
       </nav>
@@ -94,7 +266,7 @@
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="logo-pro">
           <a href="index.html"
-            ><img class="main-logo" src="img/logo/logo.png" alt=""
+            ><img class="main-logo" src="assets/images/logo.png" alt=""
           /></a>
         </div>
       </div>
@@ -103,14 +275,4 @@
   <!-- menu navbar -->
   <app-navbar-admin></app-navbar-admin>
   <router-outlet></router-outlet>
-  <!-- <div class="footer-copyright-area">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="footer-copy-right"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
 </div>
