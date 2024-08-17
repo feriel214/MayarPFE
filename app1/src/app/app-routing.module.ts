@@ -2,19 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AcceuilComponent } from './acceuil/acceuil.component';
 import { LoginComponent } from './login/login.component';
-import { AddSiteComponent } from './sites/add-site/add-site.component';
-import { EditSiteComponent } from './sites/edit-site/edit-site.component';
 import { ListSiteComponent } from './sites/list-site/list-site.component';
-
 import { DocumentationSiteComponent  } from './sites/documentation-site/documentation-site.component';
 import { DocfinanciereSiteComponent  } from './sites/docfinanciere-site/docfinanciere-site.component';
-import { AddUserComponent  } from './users/add-user/add-user.component';
+
 import { Cellule2GComponent  } from './cellule/cellule2-g/cellule2-g.component';
 import { Cellule3GComponent  } from './cellule/cellule3-g/cellule3-g.component';
 import { Cellule4GComponent  } from './cellule/cellule4-g/cellule4-g.component';
-import { Report1Component  } from './BI/report1/report1.component';
-import { Report2Component } from './BI/report2/report2.component';
-import { Report3Component } from './BI/report3/report3.component';
+
 import { TabdebordSiteComponent } from './sites/tabdebord-site/tabdebord-site.component';
 import { TabdeboardCelluleComponent } from './cellule/tabdeboard-cellule/tabdeboard-cellule.component';
 
@@ -28,7 +23,7 @@ import { DashboardAdminComponent } from './admin/dashboard-admin/dashboard-admin
 import { DashboardIngRadioComponent } from './dashboard-ing-radio/dashboard-ing-radio.component';
 import { DashboardFinancierComponent } from './dashboard-financier/dashboard-financier.component';
 import { DashboardManagerComponent } from './dashboard-manager/dashboard-manager.component';
-import { DashboardComponent } from './admin/dashboard/dashboard.component';
+
 
 
 
@@ -79,9 +74,7 @@ const routes: Routes = [
       {path:'tbsite',component: TabdebordSiteComponent},
       {path:'tbCel',component: TabdeboardCelluleComponent }
     ]},
-  {path:'report3',component: Report3Component},
-  
-  {path:'dashboard',component:DashboardComponent}
+ 
 ];
 
 @NgModule({

@@ -1,430 +1,446 @@
-<!--- here testing code -->
-<div class="breadcome-area" style="margin-top: 6%; height: 70px">
+<!-- Start Welcome area -->
+<div class="all-content-wrapper" style="margin-top: 60px; margin-left: 20px">
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="breadcome-list single-page-breadcome">
-          <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-              <div class="breadcome-heading">
-                <form role="search" class="sr-input-func">
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    class="search-int form-control"
-                  />
-                  <a href="#"><i class="fa fa-search"></i></a>
-                </form>
+        <div class="logo-pro">
+          <a href="index.html"
+            ><img class="main-logo" src="img/logo/logo.png" alt=""
+          /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-navbar-admin></app-navbar-admin>
+
+  <!--- here testing code -->
+  <div class="breadcome-area">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="breadcome-list single-page-breadcome">
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="breadcome-heading">
+                  <form role="search" class="sr-input-func">
+                    <input
+                      type="text"
+                      placeholder="Search..."
+                      class="search-int form-control"
+                    />
+                    <a href="#"><i class="fa fa-search"></i></a>
+                  </form>
+                </div>
               </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-              <ul class="breadcome-menu">
-                <li><span class="bread-blod">Acceuil / Cellule 4G </span></li>
-              </ul>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <ul class="breadcome-menu">
+                  <li><span class="bread-blod">Acceuil / Cellule 4G </span></li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="breadcome-area" style="margin-top: 2%; height: 70px">
-  <!-- Header breadcrumb area -->
-</div>
+  <div class="breadcome-area">
+    <!-- Header breadcrumb area -->
+  </div>
 
-<div class="single-pro-review-area mt-t-30 mg-b-15">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="product-payment-inner-st">
-          <div id="myTabContent" class="tab-content custom-product-edit">
-            <div
-              class="product-tab-list tab-pane fade active in"
-              id="description"
-            >
-              <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <div class="review-content-section">
-                    <div id="dropzone1" class="pro-ad">
-                      <h4 style="font-size: 20px; margin-bottom: 20px">
-                        Cellule 4G
-                      </h4>
-                      <!-- Original Form -->
-                      <div *ngIf="!showUpdateForm">
-                        <div class="row">
-                          <div class="col-lg-4">
-                            <div class="form-group">
-                              <label for="region">Région</label>
-                              <select
-                                id="region"
-                                class="form-control"
-                                [(ngModel)]="site.region"
-                                (change)="updateDelegations()"
-                              >
-                                <option
-                                  *ngFor="let region of regions"
-                                  [value]="region"
+  <div class="single-pro-review-area mt-t-30 mg-b-15">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="product-payment-inner-st">
+            <div id="myTabContent" class="tab-content custom-product-edit">
+              <div
+                class="product-tab-list tab-pane fade active in"
+                id="description"
+              >
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="review-content-section">
+                      <div id="dropzone1" class="pro-ad">
+                        <h4 style="font-size: 20px; margin-bottom: 20px">
+                          Cellule 4G
+                        </h4>
+                        <!-- Original Form -->
+                        <div *ngIf="!showUpdateForm">
+                          <div class="row">
+                            <div class="col-lg-4">
+                              <div class="form-group">
+                                <label for="region">Région</label>
+                                <select
+                                  id="region"
+                                  class="form-control"
+                                  [(ngModel)]="site.region"
+                                  (change)="updateDelegations()"
                                 >
-                                  {{ region }}
-                                </option>
+                                  <option
+                                    *ngFor="let region of regions"
+                                    [value]="region"
+                                  >
+                                    {{ region }}
+                                  </option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-lg-4">
+                              <div class="form-group">
+                                <label for="delegation">Délégation</label>
+                                <select
+                                  id="delegation"
+                                  class="form-control"
+                                  [(ngModel)]="site.delegotion"
+                                  (change)="updateSites()"
+                                >
+                                  <option
+                                    *ngFor="let delegation of delegotions"
+                                    [value]="delegation"
+                                  >
+                                    {{ delegation }}
+                                  </option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-lg-4">
+                              <div class="form-group">
+                                <label for="sites">Sites</label>
+                                <select
+                                  id="sites"
+                                  class="form-control"
+                                  [(ngModel)]="site.nomsite"
+                                  (ngModelChange)="storecodesite($event)"
+                                >
+                                  <option
+                                    *ngFor="let site of sites"
+                                    [value]="site.codesite"
+                                  >
+                                    {{ site.nomsite }}
+                                  </option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <!-- Code Cellule -->
+                            <div class="form-group col-lg-4">
+                              <label>Code Cellule</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                name="codeCellule"
+                                placeholder="Code Cellule"
+                                [(ngModel)]="cellule.codeCellule"
+                              />
+                            </div>
+                            <!-- Nom Cellule -->
+                            <div class="form-group col-lg-4">
+                              <label>Nom Cellule</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                name="nomCellule"
+                                placeholder="Nom Cellule"
+                                [(ngModel)]="cellule.nomCellule"
+                              />
+                            </div>
+
+                            <!-- Code Cellule -->
+                            <div class="form-group col-lg-4">
+                              <label>EnodB</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                name="EnodB"
+                                placeholder="EnodB"
+                                [(ngModel)]="cellule.EnodB"
+                              />
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <!-- Code Cellule -->
+                            <div class="form-group col-lg-6">
+                              <label>Tac</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                name="Tac"
+                                placeholder="Tac"
+                                [(ngModel)]="cellule.tac"
+                              />
+                            </div>
+                            <!-- Nom Cellule -->
+                            <div class="form-group col-lg-6">
+                              <label>SC</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                name="SC"
+                                placeholder="SC"
+                                [(ngModel)]="cellule.sc"
+                              />
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <!-- Code Cellule -->
+                            <div class="form-group col-lg-6">
+                              <label>Power</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                name="Power"
+                                placeholder="Power"
+                                [(ngModel)]="cellule.power"
+                              />
+                            </div>
+                            <!-- Nom Cellule -->
+                            <div class="form-group col-lg-6">
+                              <label>MLT</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                name="MLT"
+                                placeholder="MLT"
+                                [(ngModel)]="cellule.mlt"
+                              />
+                            </div>
+                          </div>
+                          <div class="row">
+                            <!-- Code Cellule -->
+                            <div class="form-group col-lg-6">
+                              <label>Azimuth</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                name="Azimuth"
+                                placeholder="Azimuth"
+                                [(ngModel)]="cellule.azimuth"
+                              />
+                            </div>
+                            <!-- Nom Cellule -->
+                            <div class="form-group col-lg-6">
+                              <label>Bande</label>
+                              <select
+                                class="form-control"
+                                name="Bande"
+                                [(ngModel)]="cellule.bande"
+                              >
+                                <option value="1350">1350</option>
                               </select>
                             </div>
                           </div>
-                          <div class="col-lg-4">
-                            <div class="form-group">
-                              <label for="delegation">Délégation</label>
-                              <select
-                                id="delegation"
-                                class="form-control"
-                                [(ngModel)]="site.delegotion"
-                                (change)="updateSites()"
-                              >
-                                <option
-                                  *ngFor="let delegation of delegotions"
-                                  [value]="delegation"
-                                >
-                                  {{ delegation }}
-                                </option>
-                              </select>
-                            </div>
-                          </div>
-                          <div class="col-lg-4">
-                            <div class="form-group">
-                              <label for="sites">Sites</label>
-                              <select
-                                id="sites"
-                                class="form-control"
-                                [(ngModel)]="site.nomsite"
-                                (ngModelChange)="storecodesite($event)"
-                              >
-                                <option
-                                  *ngFor="let site of sites"
-                                  [value]="site.codesite"
-                                >
-                                  {{ site.nomsite }}
-                                </option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <!-- Code Cellule -->
-                          <div class="form-group col-lg-4">
-                            <label>Code Cellule</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="codeCellule"
-                              placeholder="Code Cellule"
-                              [(ngModel)]="cellule.codeCellule"
-                            />
-                          </div>
-                          <!-- Nom Cellule -->
-                          <div class="form-group col-lg-4">
-                            <label>Nom Cellule</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="nomCellule"
-                              placeholder="Nom Cellule"
-                              [(ngModel)]="cellule.nomCellule"
-                            />
-                          </div>
-
-                          <!-- Code Cellule -->
-                          <div class="form-group col-lg-4">
-                            <label>EnodB</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="EnodB"
-                              placeholder="EnodB"
-                              [(ngModel)]="cellule.EnodB"
-                            />
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <!-- Code Cellule -->
-                          <div class="form-group col-lg-6">
-                            <label>Tac</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Tac"
-                              placeholder="Tac"
-                              [(ngModel)]="cellule.tac"
-                            />
-                          </div>
-                          <!-- Nom Cellule -->
-                          <div class="form-group col-lg-6">
-                            <label>SC</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="SC"
-                              placeholder="SC"
-                              [(ngModel)]="cellule.sc"
-                            />
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <!-- Code Cellule -->
-                          <div class="form-group col-lg-6">
-                            <label>Power</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Power"
-                              placeholder="Power"
-                              [(ngModel)]="cellule.power"
-                            />
-                          </div>
-                          <!-- Nom Cellule -->
-                          <div class="form-group col-lg-6">
-                            <label>MLT</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="MLT"
-                              placeholder="MLT"
-                              [(ngModel)]="cellule.mlt"
-                            />
-                          </div>
-                        </div>
-                        <div class="row">
-                          <!-- Code Cellule -->
-                          <div class="form-group col-lg-6">
-                            <label>Azimuth</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Azimuth"
-                              placeholder="Azimuth"
-                              [(ngModel)]="cellule.azimuth"
-                            />
-                          </div>
-                          <!-- Nom Cellule -->
-                          <div class="form-group col-lg-6">
-                            <label>Bande</label>
-                            <select
-                              class="form-control"
-                              name="Bande"
-                              [(ngModel)]="cellule.bande"
+                          <!-- Other fields for Cellule 2G go here -->
+                          <div class="ButtonStyle">
+                            <button
+                              class="btn btn-success myBtn"
+                              (click)="storeCellule()"
+                              style="background-color: #34baa1"
                             >
-                              <option value="1350">1350</option>
-                            </select>
-                          </div>
-                        </div>
-                        <!-- Other fields for Cellule 2G go here -->
-                        <div class="ButtonStyle">
-                          <button
-                            class="btn btn-success myBtn"
-                            (click)="storeCellule()"
-                            style="background-color: #34baa1"
-                          >
-                            Enregistrer
-                          </button>
-                          <button
-                            class="btn btn-primary myBtn"
-                            (click)="showUpdateForm = true"
-                          >
-                            Mettre à jour
-                          </button>
-                        </div>
-                      </div>
-
-                      <!-- Update Form -->
-                      <div *ngIf="showUpdateForm">
-                        <div class="form-group">
-                          <label for="region">Région</label>
-                          <select
-                            id="region"
-                            class="form-control"
-                            [(ngModel)]="site.region"
-                            (change)="updateDelegations()"
-                          >
-                            <option
-                              *ngFor="let region of regions"
-                              [value]="region"
+                              Enregistrer
+                            </button>
+                            <button
+                              class="btn btn-primary myBtn"
+                              (click)="showUpdateForm = true"
                             >
-                              {{ region }}
-                            </option>
-                          </select>
-                        </div>
-
-                        <div class="form-group">
-                          <label for="delegation">Délégation</label>
-                          <select
-                            id="delegation"
-                            class="form-control"
-                            [(ngModel)]="site.delegotion"
-                            (change)="updateSites()"
-                          >
-                            <option
-                              *ngFor="let delegation of delegotions"
-                              [value]="delegation"
-                            >
-                              {{ delegation }}
-                            </option>
-                          </select>
-                        </div>
-
-                        <div class="form-group">
-                          <label for="sites">Sites</label>
-                          <select
-                            id="sites"
-                            class="form-control"
-                            [(ngModel)]="site.nomsite"
-                            (ngModelChange)="storecodesite($event)"
-                          >
-                            <option
-                              *ngFor="let site of sites"
-                              [value]="site.codesite"
-                            >
-                              {{ site.nomsite }}
-                            </option>
-                          </select>
-                        </div>
-
-                        <div class="row">
-                          <!-- Code Cellule -->
-                          <div class="form-group col-lg-6">
-                            <label>Code Cellule</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="codeCellule"
-                              placeholder="Code Cellule"
-                              [(ngModel)]="newcellule.codeCellule"
-                            />
-                          </div>
-                          <!-- Nom Cellule -->
-                          <div class="form-group col-lg-6">
-                            <label>Nom Cellule</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="nomCellule"
-                              placeholder="Nom Cellule"
-                              [(ngModel)]="newcellule.nomCellule"
-                            />
+                              Mettre à jour
+                            </button>
                           </div>
                         </div>
 
-                        <div class="row">
-                          <!-- Code Cellule -->
+                        <!-- Update Form -->
+                        <div *ngIf="showUpdateForm">
                           <div class="form-group">
-                            <label>EnodB</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="EnodB"
-                              placeholder="EnodB"
-                              [(ngModel)]="cellule.EnodB"
-                            />
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <!-- Code Cellule -->
-                          <div class="form-group col-lg-6">
-                            <label>Tac</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Tac"
-                              placeholder="Tac"
-                              [(ngModel)]="newcellule.tac"
-                            />
-                          </div>
-                          <!-- Nom Cellule -->
-                          <div class="form-group col-lg-6">
-                            <label>SC</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="SC"
-                              placeholder="SC"
-                              [(ngModel)]="newcellule.sc"
-                            />
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <!-- Code Cellule -->
-                          <div class="form-group col-lg-6">
-                            <label>Power</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Power"
-                              placeholder="Power"
-                              [(ngModel)]="newcellule.power"
-                            />
-                          </div>
-                          <!-- Nom Cellule -->
-                          <div class="form-group col-lg-6">
-                            <label>MLT</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="MLT"
-                              placeholder="MLT"
-                              [(ngModel)]="newcellule.mlt"
-                            />
-                          </div>
-                        </div>
-                        <div class="row">
-                          <!-- Code Cellule -->
-                          <div class="form-group col-lg-6">
-                            <label>Azimuth</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Azimuth"
-                              placeholder="Azimuth"
-                              [(ngModel)]="newcellule.azimuth"
-                            />
-                          </div>
-                          <!-- Nom Cellule -->
-                          <div class="form-group col-lg-6">
-                            <label>Bande</label>
+                            <label for="region">Région</label>
                             <select
+                              id="region"
                               class="form-control"
-                              name="Bande"
-                              [(ngModel)]="newcellule.bande"
+                              [(ngModel)]="site.region"
+                              (change)="updateDelegations()"
                             >
-                              <option value="1350">1350</option>
+                              <option
+                                *ngFor="let region of regions"
+                                [value]="region"
+                              >
+                                {{ region }}
+                              </option>
                             </select>
                           </div>
-                        </div>
-                        <!-- Other fields for Cellule 2G go here -->
-                        <div class="ButtonStyle">
-                          <button
-                            class="btn btn-success myBtn"
-                            (click)="updateData()"
-                            style="background-color: #34baa1"
-                          >
-                            Enregistrer
-                          </button>
-                          <button
-                            class="btn btn-danger myBtn"
-                            (click)="cancelUpdate()"
-                          >
-                            Annuler
-                          </button>
+
+                          <div class="form-group">
+                            <label for="delegation">Délégation</label>
+                            <select
+                              id="delegation"
+                              class="form-control"
+                              [(ngModel)]="site.delegotion"
+                              (change)="updateSites()"
+                            >
+                              <option
+                                *ngFor="let delegation of delegotions"
+                                [value]="delegation"
+                              >
+                                {{ delegation }}
+                              </option>
+                            </select>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="sites">Sites</label>
+                            <select
+                              id="sites"
+                              class="form-control"
+                              [(ngModel)]="site.nomsite"
+                              (ngModelChange)="storecodesite($event)"
+                            >
+                              <option
+                                *ngFor="let site of sites"
+                                [value]="site.codesite"
+                              >
+                                {{ site.nomsite }}
+                              </option>
+                            </select>
+                          </div>
+
+                          <div class="row">
+                            <!-- Code Cellule -->
+                            <div class="form-group col-lg-6">
+                              <label>Code Cellule</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                name="codeCellule"
+                                placeholder="Code Cellule"
+                                [(ngModel)]="newcellule.codeCellule"
+                              />
+                            </div>
+                            <!-- Nom Cellule -->
+                            <div class="form-group col-lg-6">
+                              <label>Nom Cellule</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                name="nomCellule"
+                                placeholder="Nom Cellule"
+                                [(ngModel)]="newcellule.nomCellule"
+                              />
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <!-- Code Cellule -->
+                            <div class="form-group">
+                              <label>EnodB</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                name="EnodB"
+                                placeholder="EnodB"
+                                [(ngModel)]="cellule.EnodB"
+                              />
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <!-- Code Cellule -->
+                            <div class="form-group col-lg-6">
+                              <label>Tac</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                name="Tac"
+                                placeholder="Tac"
+                                [(ngModel)]="newcellule.tac"
+                              />
+                            </div>
+                            <!-- Nom Cellule -->
+                            <div class="form-group col-lg-6">
+                              <label>SC</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                name="SC"
+                                placeholder="SC"
+                                [(ngModel)]="newcellule.sc"
+                              />
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <!-- Code Cellule -->
+                            <div class="form-group col-lg-6">
+                              <label>Power</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                name="Power"
+                                placeholder="Power"
+                                [(ngModel)]="newcellule.power"
+                              />
+                            </div>
+                            <!-- Nom Cellule -->
+                            <div class="form-group col-lg-6">
+                              <label>MLT</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                name="MLT"
+                                placeholder="MLT"
+                                [(ngModel)]="newcellule.mlt"
+                              />
+                            </div>
+                          </div>
+                          <div class="row">
+                            <!-- Code Cellule -->
+                            <div class="form-group col-lg-6">
+                              <label>Azimuth</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                name="Azimuth"
+                                placeholder="Azimuth"
+                                [(ngModel)]="newcellule.azimuth"
+                              />
+                            </div>
+                            <!-- Nom Cellule -->
+                            <div class="form-group col-lg-6">
+                              <label>Bande</label>
+                              <select
+                                class="form-control"
+                                name="Bande"
+                                [(ngModel)]="newcellule.bande"
+                              >
+                                <option value="1350">1350</option>
+                              </select>
+                            </div>
+                          </div>
+                          <!-- Other fields for Cellule 2G go here -->
+                          <div class="ButtonStyle">
+                            <button
+                              class="btn btn-success myBtn"
+                              (click)="updateData()"
+                              style="background-color: #34baa1"
+                            >
+                              Enregistrer
+                            </button>
+                            <button
+                              class="btn btn-danger myBtn"
+                              (click)="cancelUpdate()"
+                            >
+                              Annuler
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+              <!-- Other tab panes -->
             </div>
-            <!-- Other tab panes -->
           </div>
         </div>
       </div>
