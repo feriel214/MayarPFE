@@ -11,3 +11,19 @@
 .text-light {
   color: #f8f9fa!important; /* Bootstrap light color or use your preferred light color */
 }
+
+.error-pagewrap {
+  position: relative; /* Ensure the container is positioned relative */
+  height: 100vh;
+}
+
+.home-icon-container {
+  position: absolute;
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
+  z-index: 1000; /* Make sure it is above other content */
+}
+
+.home-icon img {
+  display: block; /* Remove any inline spacing issues */
+}
