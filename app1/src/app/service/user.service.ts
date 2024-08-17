@@ -52,4 +52,8 @@ export class UserService {
   getAllUsers(): Observable<any> {
     return this.http.get(`${this.apiUrl}users`);
   }
+
+  blockUser(id: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}blockUser/${id}`, {});
+  }
 }

@@ -3,6 +3,7 @@ import { UserService } from 'src/app/service/user.service';
 import { User } from 'src/app/models/user.model';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -74,7 +75,23 @@ export class UsersComponent implements OnInit {
         return '';
     }
   }
-  
+  blockUser(userId:any): void {
+    this.userService.blockUser(userId).subscribe(
+      response => {
+        Swal.fire({
+          title: 'Utilisateur bloqué avec succès ! ',
+          text: 'succès',
+          icon: 'warning',
+        });
+        
+        this.loadUsers()
+      },
+      error => {
+        console.error('Erreur lors du blocage de l\'utilisateur', error);
+        // Handle error response
+      }
+    );
+  }
 
   editUser(user: any): void {
     this.editUserData = { ...user };

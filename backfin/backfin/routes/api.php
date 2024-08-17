@@ -57,6 +57,7 @@ Route::get('utilisateurs/{id}', 'App\Http\Controllers\UtilisateurController@getI
 Route::post('inscription', 'App\Http\Controllers\UtilisateurController@inscription');
 Route::post('addAccount', 'App\Http\Controllers\UtilisateurController@addAccount');
 Route::post('connexion', 'App\Http\Controllers\UtilisateurController@connexion');
+Route::put('blockUser/{id}', 'App\Http\Controllers\UtilisateurController@blockUser');
 
 Route::post('storesite', 'App\Http\Controllers\SiteGSMController@storesite');
 Route::get('showsite','App\Http\Controllers\SiteGSMController@show');

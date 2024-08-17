@@ -229,6 +229,23 @@ public function getAllUsers(Request $request)
 
 
 
+public function blockUser(Request $request, $id)
+{
+    try {
+        // Find the user by ID
+        $utilisateur = Utilisateur::findOrFail($id);
+
+        // Update the user's profile to 'user'
+        $utilisateur->profil = 'user';
+        $utilisateur->save();
+
+        // Return a JSON response confirming the update
+        return response()->json(['message' => 'Utilisateur bloqué avec succès'], 200);
+    } catch (\Exception $e) {
+        // Handle any errors
+        return response()->json(['message' => 'Erreur lors du blocage de l\'utilisateur', 'error' => $e->getMessage()], 500);
+    }
+}
 
 
 
