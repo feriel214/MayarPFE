@@ -150,18 +150,15 @@
                               Exporter
                             </button>
                             <div class="dropdown-menu">
-                              <a class="dropdown-item" (click)="exportToPDF()">
-                                Exporter en PDF
-                              </a>
-                              <a class="dropdown-item" (click)="exportToCSV()">
-                                Exporter en CSV
-                              </a>
-                              <a
-                                class="dropdown-item"
-                                (click)="exportToExcel()"
+                              <a class="dropdown-item" (click)="exportToPDF()"
+                                >Exporter en PDF</a
                               >
-                                Exporter en Excel
-                              </a>
+                              <a class="dropdown-item" (click)="exportToCSV()"
+                                >Exporter en CSV</a
+                              >
+                              <a class="dropdown-item" (click)="exportToExcel()"
+                                >Exporter en Excel</a
+                              >
                             </div>
                           </div>
                         </div>
@@ -170,121 +167,131 @@
                         <div
                           id="report-content"
                           class="container-fluid"
-                          *ngIf="siteData && show === 'A'"
+                          *ngIf="siteData || docFinanciereData || archiveData"
                         >
-                          <h4 style="font-size: 20px; margin-bottom: 20px">
-                            Informations Site
-                          </h4>
-                          <div class="table-container">
-                            <table class="table">
-                              <thead>
-                                <tr>
-                                  <th>Id Site</th>
-                                  <th>Nom Site</th>
-                                  <th>Region</th>
-                                  <th>Delegation</th>
-                                  <th>Secteur</th>
-                                  <th>X</th>
-                                  <th>Y</th>
-                                  <th>Fournisseur</th>
-                                  <th>Antenne</th>
-                                  <th>Alimentation</th>
-                                  <th>Acces</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr *ngFor="let site of siteData">
-                                  <td>{{ site.idSite }}</td>
-                                  <td>{{ site.nomsite }}</td>
-                                  <td>{{ site.region }}</td>
-                                  <td>{{ site.delegotion }}</td>
-                                  <td>{{ site.secteur }}</td>
-                                  <td>{{ site.x }}</td>
-                                  <td>{{ site.y }}</td>
-                                  <td>{{ site.fournisseur }}</td>
-                                  <td>{{ site.antenne }}</td>
-                                  <td>{{ site.alimentation }}</td>
-                                  <td>{{ site.acces }}</td>
-                                </tr>
-                              </tbody>
-                            </table>
+                          <!-- Informations Site Section -->
+                          <div *ngIf="siteData && show === 'A'">
+                            <h4 style="font-size: 20px; margin-bottom: 20px">
+                              Informations Site
+                            </h4>
+                            <div class="table-container">
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th>Id Site</th>
+                                    <th>Nom Site</th>
+                                    <th>Region</th>
+                                    <th>Delegation</th>
+                                    <th>Secteur</th>
+                                    <th>X</th>
+                                    <th>Y</th>
+                                    <th>Fournisseur</th>
+                                    <th>Antenne</th>
+                                    <th>Alimentation</th>
+                                    <th>Acces</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let site of siteData">
+                                    <td>{{ site.idSite }}</td>
+                                    <td>{{ site.nomsite }}</td>
+                                    <td>{{ site.region }}</td>
+                                    <td>{{ site.delegotion }}</td>
+                                    <td>{{ site.secteur }}</td>
+                                    <td>{{ site.x }}</td>
+                                    <td>{{ site.y }}</td>
+                                    <td>{{ site.fournisseur }}</td>
+                                    <td>{{ site.antenne }}</td>
+                                    <td>{{ site.alimentation }}</td>
+                                    <td>{{ site.acces }}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
                           </div>
-                        </div>
 
-                        <!-- Nouvelle section pour afficher les données de docfinanciere -->
-                        <div
-                          class="container-fluid"
-                          *ngIf="docFinanciereData && show === 'A'"
-                        >
-                          <h4 style="font-size: 20px; margin-bottom: 20px">
-                            Document Financiere
-                          </h4>
-                          <div class="table-container">
-                            <table class="table">
-                              <thead>
-                                <tr>
-                                  <th>Id Proprietaire</th>
-                                  <th>Montant</th>
-                                  <th>Date Contract</th>
-                                  <th>Date MAJ</th>
-                                  <th>Contract</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>{{ docFinanciereData?.propritere }}</td>
-                                  <td>{{ docFinanciereData?.montant }}</td>
-                                  <td>{{ docFinanciereData?.datecontract }}</td>
-                                  <td>{{ docFinanciereData?.datemaj }}</td>
-                                  <td>
-                                    <a
-                                      [href]="contractUrl"
-                                      target="_blank"
-                                      class="btn-link"
-                                    >
-                                      Download Contract
-                                    </a>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
+                          <!-- Nouvelle section pour afficher les données de docfinanciere -->
+                          <div *ngIf="docFinanciereData && show === 'A'">
+                            <h4 style="font-size: 20px; margin-bottom: 20px">
+                              Document Financiere
+                            </h4>
+                            <div class="table-container">
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th>Id Proprietaire</th>
+                                    <th>Montant</th>
+                                    <th>Date Contract</th>
+                                    <th>Date MAJ</th>
+                                    <th>Contract</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>{{ docFinanciereData?.propritere }}</td>
+                                    <td>{{ docFinanciereData?.montant }}</td>
+                                    <td>
+                                      {{ docFinanciereData?.datecontract }}
+                                    </td>
+                                    <td>{{ docFinanciereData?.datemaj }}</td>
+                                    <td>
+                                      <a
+                                        [href]="contractUrl"
+                                        target="_blank"
+                                        class="btn-link"
+                                      >
+                                        Download Contract
+                                      </a>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
                           </div>
-                        </div>
 
-                        <!-- Section pour afficher les données d'archive -->
-                        <div class="container-fluid" *ngIf="archiveData">
-                          <h4 style="font-size: 20px; margin-bottom: 20px">
-                            Archive De Site
-                          </h4>
-                          <div class="table-container">
-                            <table class="table">
-                              <thead>
-                                <tr>
-                                  <th>Id Proprietaire</th>
-                                  <th>Montant</th>
-                                  <th>Date Contract</th>
-                                  <th>Date MAJ</th>
-                                  <th>Contract</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>{{ archiveData?.propritere }}</td>
-                                  <td>{{ archiveData?.montant }}</td>
-                                  <td>{{ archiveData?.datecontract }}</td>
-                                  <td>{{ archiveData?.datemaj }}</td>
-                                  <td>
-                                    <a
-                                      [href]="contractUrl"
-                                      target="_blank"
-                                      class="btn-link"
-                                    >
-                                      Download Contract
-                                    </a>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
+                          <!-- Section pour afficher les données d'archive -->
+                          <div *ngIf="archiveData">
+                            <h4 style="font-size: 20px; margin-bottom: 20px">
+                              Archive De Site
+                            </h4>
+                            <div class="table-container">
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th>Id Archive</th>
+                                    <th>Fiche Exp</th>
+                                    <th>Date Contract</th>
+                                    <th>Date MAJ</th>
+                                    <th>APD</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>{{ archiveData?.idArchive2 }}</td>
+                                    <td>
+                                      <a
+                                        [href]="archiveData?.ficheExp"
+                                        target="_blank"
+                                        class="btn-link"
+                                      >
+                                        Download Fiche Exp
+                                      </a>
+                                    </td>
+                                    <td>{{ archiveData?.created_at }}</td>
+                                    <td>{{ archiveData?.updated_at }}</td>
+                                    <td>
+                                      <a
+                                        [href]="archiveData?.APD"
+                                        target="_blank"
+                                        class="btn-link"
+                                      >
+                                        Download APD
+                                      </a>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
                           </div>
                         </div>
                       </div>

@@ -114,7 +114,9 @@ export class TabdebordSiteComponent implements OnInit {
   fetchDocFinanciereData(): void {
     this.siteService.getDocById(this.selectedSiteCode).subscribe(
       data => {
+        
         this.docFinanciereData = data.docFinanciere;
+        console.log("********docFinanciereData**********",this.docFinanciereData)
         this.contractUrl = data.contract_url;
       },
       error => {
@@ -137,9 +139,6 @@ export class TabdebordSiteComponent implements OnInit {
     );
   }
 
- 
-  
-
   // Convert JSON to CSV
   convertToCSV(objArray: any[]): string {
     const header = Object.keys(objArray[0]);
@@ -158,15 +157,15 @@ export class TabdebordSiteComponent implements OnInit {
   exportToPDF(): void {
     const dataElement = document.getElementById('report-content');
     if (dataElement) {
-      html2canvas(dataElement).then(canvas => {
+      html2canvas(dataElement, { useCORS: true }).then(canvas => {
         const imgData = canvas.toDataURL('image/png');
         const pdf = new jsPDF();
-        const imgWidth = 210; // A4 width in mm
-        const pageHeight = 295; // A4 height in mm
+        const imgWidth = 210; // Largeur A4 en mm
+        const pageHeight = 295; // Hauteur A4 en mm
         const imgHeight = canvas.height * imgWidth / canvas.width;
         let heightLeft = imgHeight;
         let position = 0;
-  
+        
         pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
         heightLeft -= pageHeight;
   
@@ -186,10 +185,8 @@ export class TabdebordSiteComponent implements OnInit {
     }
   }
   
-  
-  // Exporter en CSV
+
   exportToCSV(): void {
-    // Combinez toutes les données en un seul tableau
     const combinedData = [
       ...this.siteData.map(site => [
         site.idSite,
@@ -204,27 +201,27 @@ export class TabdebordSiteComponent implements OnInit {
         site.alimentation,
         site.acces
       ]),
-      ...this.docFinanciereData ? [[
+      ...(this.docFinanciereData ? [[
         this.docFinanciereData.propritere,
         this.docFinanciereData.montant,
         this.docFinanciereData.datecontract,
         this.docFinanciereData.datemaj,
         this.docFinanciereData.contract
-      ]] : [],
-      ...this.archiveData ? [[
-        this.archiveData.propritere,
-        this.archiveData.montant,
-        this.archiveData.datecontract,
-        this.archiveData.datemaj,
-        this.archiveData.contract
-      ]] : []
+      ]] : []),
+      ...(this.archiveData ? [[
+        this.archiveData.idArchive2,
+        this.archiveData.ficheExp,
+        this.archiveData.created_at,
+        this.archiveData.updated_at,
+        this.archiveData.APD
+      ]] : [])
     ];
-
+  
     const csv = Papa.unparse({
-      fields: ['Id Site', 'Nom Site', 'Region', 'Delegation', 'Secteur', 'X', 'Y', 'Fournisseur', 'Antenne', 'Alimentation', 'Acces'],
+      fields: ['Id Site', 'Nom Site', 'Region', 'Delegation', 'Secteur', 'X', 'Y', 'Fournisseur', 'Antenne', 'Alimentation', 'Acces', 'Id Archive', 'Fiche Exp', 'Date Contract', 'Date MAJ', 'APD'],
       data: combinedData
     });
-
+  
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
@@ -233,12 +230,11 @@ export class TabdebordSiteComponent implements OnInit {
     link.click();
     document.body.removeChild(link);
   }
+  
 
-  // Exporter en Excel
   exportToExcel(): void {
-    // Combinez toutes les données en un seul tableau
     const combinedData = [
-      ['Id Site', 'Nom Site', 'Region', 'Delegation', 'Secteur', 'X', 'Y', 'Fournisseur', 'Antenne', 'Alimentation', 'Acces'],
+      ['Id Site', 'Nom Site', 'Region', 'Delegation', 'Secteur', 'X', 'Y', 'Fournisseur', 'Antenne', 'Alimentation', 'Acces', 'Id Archive', 'Fiche Exp', 'Date Contract', 'Date MAJ', 'APD'],
       ...this.siteData.map(site => [
         site.idSite,
         site.nomsite,
@@ -252,25 +248,26 @@ export class TabdebordSiteComponent implements OnInit {
         site.alimentation,
         site.acces
       ]),
-      ...this.docFinanciereData ? [[
+      ...(this.docFinanciereData ? [[
         this.docFinanciereData.propritere,
         this.docFinanciereData.montant,
         this.docFinanciereData.datecontract,
         this.docFinanciereData.datemaj,
         this.docFinanciereData.contract
-      ]] : [],
-      ...this.archiveData ? [[
-        this.archiveData.propritere,
-        this.archiveData.montant,
-        this.archiveData.datecontract,
-        this.archiveData.datemaj,
-        this.archiveData.contract
-      ]] : []
+      ]] : []),
+      ...(this.archiveData ? [[
+        this.archiveData.idArchive2,
+        this.archiveData.ficheExp,
+        this.archiveData.created_at,
+        this.archiveData.updated_at,
+        this.archiveData.APD
+      ]] : [])
     ];
-
+  
     const ws = XLSX.utils.aoa_to_sheet(combinedData);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Report');
     XLSX.writeFile(wb, 'report.xlsx');
   }
+  
 }
