@@ -1,88 +1,101 @@
-<div class="error-pagewrap">
-  <div class="home-icon-container">
-    <img
-      routerLink="/acceuil"
-      src="assets/images/home-icon.png"
-      alt="Home"
-      style="width: 50px; height: 50px"
-    />
-  </div>
-  <div class="error-page-int">
-    <div class="text-center m-b-md custom-login text-light">
-      <h3 class="text-light">Register TO APP</h3>
-      <p class="text-light">This is the best app ever!</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-7">
+      <div class="error-pagewrap">
+        <div class="home-icon-container">
+          <img
+            routerLink="/acceuil"
+            src="assets/images/home-icon.png"
+            alt="Home"
+            style="width: 50px; height: 50px"
+          />
+        </div>
+      </div>
     </div>
-
-    <div class="content-error">
-      <div class="hpanel">
-        <div class="panel-body">
-          <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
-            <div class="form-group" style="margin-top: 7% !important">
-              <label for="nom">Nom</label>
-              <input
-                id="nom"
-                type="text"
-                class="form-control"
-                formControlName="nom"
-                required
-                placeholder="Enter your last name"
-              />
-            </div>
-            <div class="form-group">
-              <label for="prenom">Prénom</label>
-              <input
-                id="prenom"
-                type="text"
-                class="form-control"
-                formControlName="prenom"
-                required
-                placeholder="Enter your first name"
-              />
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input
-                id="email"
-                type="email"
-                class="form-control"
-                formControlName="email"
-                required
-                placeholder="Enter your email"
-              />
-            </div>
-            <div class="form-group">
-              <label for="password">Mot de passe</label>
-              <input
-                id="password"
-                type="password"
-                class="form-control"
-                formControlName="password"
-                required
-                placeholder="Enter your password"
-              />
-            </div>
-            <div class="form-group">
-              <label for="password_repeat">Répéter Mot de passe</label>
-              <input
-                id="password_repeat"
-                type="password"
-                class="form-control"
-                formControlName="password_repeat"
-                required
-                placeholder="Repeat your password"
-              />
+    <div class="col-lg-5">
+      <div class="content-error">
+        <div class="hpanel">
+          <div class="panel-body">
+            <div class="text-center m-b-md custom-login text-light">
+              <h3 class="text-dark">Register TO APP</h3>
+              <!-- <p class="text-dark">This is the best app ever!</p> -->
             </div>
 
-            <button class="btn btn-success btn-block loginbtn" type="submit">
-              S'inscrire
-            </button>
-            <button
-              class="btn btn-success btn-block loginbtn"
-              routerLink="/login"
-            >
-              Connexion
-            </button>
-          </form>
+            <img
+              routerLink="/acceuil"
+              src="assets/images/TT2.png"
+              alt="Home"
+              style="width: 150px; height: 80px; margin-left: 40%"
+            />
+
+            <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+              <div class="form-group" style="margin-top: 7% !important">
+                <label for="nom">Nom</label>
+                <input
+                  id="nom"
+                  type="text"
+                  class="form-control"
+                  formControlName="nom"
+                  required
+                  placeholder="Enter your last name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="prenom">Prénom</label>
+                <input
+                  id="prenom"
+                  type="text"
+                  class="form-control"
+                  formControlName="prenom"
+                  required
+                  placeholder="Enter your first name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  id="email"
+                  type="email"
+                  class="form-control"
+                  formControlName="email"
+                  required
+                  placeholder="Enter your email"
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input
+                  id="password"
+                  type="password"
+                  class="form-control"
+                  formControlName="password"
+                  required
+                  placeholder="Enter your password"
+                />
+              </div>
+              <div class="form-group">
+                <label for="password_repeat">Répéter Mot de passe</label>
+                <input
+                  id="password_repeat"
+                  type="password"
+                  class="form-control"
+                  formControlName="password_repeat"
+                  required
+                  placeholder="Repeat your password"
+                />
+              </div>
+
+              <button class="btn btn-success btn-block loginbtn" type="submit">
+                S'inscrire
+              </button>
+              <button
+                class="btn btn-success btn-block loginbtn"
+                routerLink="/login"
+              >
+                Connexion
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
