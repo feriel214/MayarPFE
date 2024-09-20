@@ -75,12 +75,13 @@
                                   class="form-control"
                                   [(ngModel)]="site.region"
                                   (change)="updateDelegations()"
+                                  (change)="onRegionChange(site.region)"
                                 >
                                   <option
                                     *ngFor="let region of regions"
-                                    [value]="region"
+                                    [value]="region.idReg"
                                   >
-                                    {{ region }}
+                                    {{ region.libelleReg }}
                                   </option>
                                 </select>
                               </div>
@@ -95,10 +96,12 @@
                                   (change)="updateSites()"
                                 >
                                   <option
-                                    *ngFor="let delegation of delegotions"
-                                    [value]="delegation"
+                                    *ngFor="
+                                      let delegation of filteredDelegations
+                                    "
+                                    [value]="delegation.idDel"
                                   >
-                                    {{ delegation }}
+                                    {{ delegation.libelleDel }}
                                   </option>
                                 </select>
                               </div>
@@ -267,7 +270,7 @@
                               (change)="updateSites()"
                             >
                               <option
-                                *ngFor="let delegation of delegotions"
+                                *ngFor="let delegation of delegations"
                                 [value]="delegation"
                               >
                                 {{ delegation }}

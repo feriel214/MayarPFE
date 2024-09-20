@@ -56,7 +56,8 @@
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="review-content-section">
                       <div id="dropzone1" class="pro-ad">
-                        <div>
+                        <!-- Debut vrai -->
+                        <!-- <div>
                           <div class="form-group col-lg-2">
                             <label for="region">Région</label>
                             <select
@@ -141,27 +142,94 @@
                               </option>
                             </select>
                           </div>
+                        </div> -->
+                        <!-- end vrai-->
+
+                        <div>
+                          <div class="form-group col-lg-2">
+                            <label for="region">Région</label>
+                            <select
+                              id="region"
+                              class="form-control"
+                              [(ngModel)]="site.region"
+                              (change)="updateDelegations()"
+                              (change)="onRegionChange(site.region)"
+                            >
+                              <option
+                                *ngFor="let region of regions"
+                                [value]="region.idReg"
+                              >
+                                {{ region.libelleReg }}
+                              </option>
+                            </select>
+                          </div>
+                          <div class="form-group col-lg-2">
+                            <label for="delegation">Délégation</label>
+                            <select
+                              id="delegation"
+                              class="form-control"
+                              [(ngModel)]="site.delegotion"
+                              (change)="onDelegationChange(site.delegotion)"
+                            >
+                              >
+                              <option
+                                *ngFor="let delegation of filteredDelegations"
+                                [value]="delegation.idDel"
+                              >
+                                {{ delegation.libelleDel }}
+                              </option>
+                            </select>
+                          </div>
+                          <div class="form-group col-lg-2">
+                            <label for="fournisseur">Fournisseur</label>
+                            <select
+                              id="fournisseur"
+                              class="form-control"
+                              [(ngModel)]="site.fournisseur"
+                              (ngModelChange)="updateSites()"
+                            >
+                              <option
+                                *ngFor="let fournisseur of fournisseurs"
+                                [value]="fournisseur.idFourn"
+                              >
+                                {{ fournisseur.nomFournisseur }}
+                              </option>
+                            </select>
+                          </div>
+                          <div class="form-group col-lg-2">
+                            <label for="sites">Sites</label>
+                            <select
+                              id="sites"
+                              class="form-control"
+                              [(ngModel)]="site.nomsite"
+                              (ngModelChange)="storecodesite($event)"
+                            >
+                              <option
+                                *ngFor="let site of filteredSites"
+                                [value]="site.codesite"
+                              >
+                                {{ site.nomsite }}
+                              </option>
+                            </select>
+                          </div>
+                          <div class="form-group col-lg-2">
+                            <label for="cellules">Technologie</label>
+                            <select
+                              id="cellules"
+                              class="form-control"
+                              [(ngModel)]="selectedidCel"
+                              (change)="onCelluleSelect($event)"
+                            >
+                              <option
+                                *ngFor="let cellule of cellules"
+                                [value]="cellule"
+                              >
+                                {{ cellule }}
+                              </option>
+                            </select>
+                          </div>
                         </div>
 
-                        <!-- Boutons d'exportation -->
-                        <!-- <div class="form-group col-lg-12">
-                        <button class="btn btn-primary" (click)="exportToPDF()">
-                          Exporter en PDF
-                        </button>
-                        <button
-                          class="btn btn-secondary"
-                          (click)="exportToCSV()"
-                        >
-                          Exporter en CSV
-                        </button>
-                        <button
-                          class="btn btn-success"
-                          (click)="exportToExcel()"
-                        >
-                          Exporter en Excel
-                        </button>
-                      </div> -->
-                        <!-- Dropdown for Export Options -->
                         <div class="form-group col-lg-12">
                           <div class="btn-group">
                             <button

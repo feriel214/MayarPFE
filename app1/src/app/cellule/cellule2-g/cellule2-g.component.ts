@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AdminService } from 'src/app/service/admin.service';
 import { SiteService } from 'src/app/service/site.service';
 import Swal from 'sweetalert2';
 
@@ -49,26 +50,31 @@ export class Cellule2GComponent {
     bande: 0,
   };
 
-  regions: string[] = ['region1', 'region2', 'region3'];
-  delegotions: any[] = [];
-  sites: any[] = [];
+  regions: any[] = []; // Dynamiquement peuplé
+  delegations: any[] = []; // Dynamiquement peuplé
+  filteredDelegations : any[] = [];
+  sites: any[] = []; // Dynamiquement peuplé
   selectedSiteCode: any;
   selectedidSite: any;
   selectedidCel: any;
   cG2: any;
 
-  constructor(private route: ActivatedRoute, private siteService: SiteService, private router: Router) {}
+  constructor(private route: ActivatedRoute, private siteService: SiteService, private router: Router,private adminService:AdminService) {}
 
   ngOnInit(): void {
+ 
     this.updateDelegations();
+    this.getRegions();
+    this.getSites();
+    this.getDelegations();
   }
 
   updateDelegations(): void {
     this.siteService.getdelegbyregion(this.site.region).subscribe(
       (response: any[]) => {
         console.log('region', this.site.region);
-        this.delegotions = response.map((site: any) => site.delegotion);
-        console.log("Selected delegations: ", this.delegotions);
+        this.delegations = response.map((site: any) => site.delegotion);
+        console.log("Selected delegations: ", this.delegations);
       },
       (error: any) => {
         console.error('Error fetching delegations:', error);
@@ -196,4 +202,43 @@ export class Cellule2GComponent {
   cancelUpdate() {
     this.showUpdateForm = false;
   }
+
+
+  getRegions() {
+    this.adminService.getAllRegions().subscribe((data: any) => {
+      this.regions = data;
+      console.log("regions ", this.regions)
+    });
+  }
+
+  // Obtenir toutes les délégations
+  getDelegations() {
+    this.adminService.getAllDelegations().subscribe((data: any) => {
+      this.delegations = data;
+      console.log("delegations ", this.delegations)
+    });
+  }
+
+getSites(){
+  this.siteService.getAllSites().subscribe((data: any) => {
+    this.sites = data;
+    console.log("sites ", this.sites)
+  });
+
+}
+
+
+onRegionChange(regionId: any) {
+  console.log("onregion change : regionId", regionId);
+  
+  // Correction du filtre en ajoutant le 'return'
+  this.filteredDelegations = this.delegations.filter((del: any) => {
+    return del.region_id == regionId;  // Ajout du return
+  });
+
+  // Réinitialiser la sélection de la délégation et des secteurs
+  this.site.delegotion = '';
+
+  console.log("filteredDelegations", this.filteredDelegations);  // Ajout pour vérifier les résultats
+}
 }

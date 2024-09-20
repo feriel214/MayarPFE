@@ -76,12 +76,13 @@
                               class="form-control"
                               [(ngModel)]="site.region"
                               (change)="updateDelegations()"
+                              (change)="onRegionChange(site.region)"
                             >
                               <option
                                 *ngFor="let region of regions"
-                                [value]="region"
+                                [value]="region.idReg"
                               >
-                                {{ region }}
+                                {{ region.libelleReg }}
                               </option>
                             </select>
                           </div>
@@ -91,13 +92,14 @@
                               id="delegation"
                               class="form-control"
                               [(ngModel)]="site.delegotion"
-                              (change)="updateFournisseur()"
+                              (change)="onDelegationChange(site.delegotion)"
                             >
-                              <option
-                                *ngFor="let delegation of delegotions"
-                                [value]="delegation"
                               >
-                                {{ delegation }}
+                              <option
+                                *ngFor="let delegation of filteredDelegations"
+                                [value]="delegation.idDel"
+                              >
+                                {{ delegation.libelleDel }}
                               </option>
                             </select>
                           </div>
@@ -111,9 +113,9 @@
                             >
                               <option
                                 *ngFor="let fournisseur of fournisseurs"
-                                [value]="fournisseur"
+                                [value]="fournisseur.idFourn"
                               >
-                                {{ fournisseur }}
+                                {{ fournisseur.nomFournisseur }}
                               </option>
                             </select>
                           </div>
@@ -128,7 +130,7 @@
                               (ngModelChange)="storecodesite($event)"
                             >
                               <option
-                                *ngFor="let site of sites"
+                                *ngFor="let site of filteredSites"
                                 [value]="site.codesite"
                               >
                                 {{ site.nomsite }}
@@ -231,9 +233,9 @@
                                     <td>{{ docFinanciereData?.propritere }}</td>
                                     <td>{{ docFinanciereData?.montant }}</td>
                                     <td>
-                                      {{ docFinanciereData?.datecontract }}
+                                      {{ docFinanciereData?.created_at }}
                                     </td>
-                                    <td>{{ docFinanciereData?.datemaj }}</td>
+                                    <td>{{ docFinanciereData?.updated_at }}</td>
                                     <td>
                                       <a
                                         [href]="contractUrl"

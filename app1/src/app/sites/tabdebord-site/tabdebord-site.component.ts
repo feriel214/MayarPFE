@@ -6,6 +6,7 @@ import 'jspdf-autotable'; // Assurez-vous que ceci est importé correctement
 import html2canvas from 'html2canvas';
 import * as XLSX from 'xlsx';
 import * as Papa from 'papaparse';
+import { AdminService } from 'src/app/service/admin.service';
 
 @Component({
   selector: 'app-tabdebord-site',
@@ -37,24 +38,30 @@ export class TabdebordSiteComponent implements OnInit {
   contractUrl: string | undefined;
   docFinanciereData: any = {};
   siteData: any[] = [];
-  regions: string[] = ['region1', 'region2', 'region3'];
-  delegotions: any[] = [];
+  regions: any[] = []; // Dynamiquement peuplé
+  delegations: any[] = []; // Dynamiquement peuplé
+  filteredDelegations : any[] = [];
+  filteredSites  : any[] = [];
+  sites: any[] = []; // Dynamiquement peuplé
   fournisseurs: any[] = [];
-  sites: any[] = [];
   selectedSiteCode: any;
   selectedidSite: any;
   selectedidCel: any;
 
-  constructor(private route: ActivatedRoute, private siteService: SiteService, private router: Router) {}
+  constructor(private route: ActivatedRoute, private siteService: SiteService, private router: Router, private service: AdminService) {}
 
   ngOnInit(): void {
     this.updateDelegations();
+    this.getRegions();
+    this.getSites();
+    this.getDelegations();
+    this.getFournisseurs();
   }
 
   updateDelegations(): void {
     this.siteService.getdelegbyregion(this.site.region).subscribe(
       (response: any[]) => {
-        this.delegotions = response.map((site: any) => site.delegotion);
+        this.delegations = response.map((site: any) => site.delegotion);
       },
       (error: any) => {
         console.error('Error fetching delegations:', error);
@@ -85,6 +92,8 @@ export class TabdebordSiteComponent implements OnInit {
   }
 
   storecodesite(id: any): void {
+    console.log("**site",this.site)
+    console.log("storecodesite id : ",id)
     this.selectedSiteCode = id;
     this.siteService.getidSiteBycode(this.selectedSiteCode).subscribe(
       (response: any) => {
@@ -270,4 +279,64 @@ export class TabdebordSiteComponent implements OnInit {
     XLSX.writeFile(wb, 'report.xlsx');
   }
   
+
+
+    // Obtenir toutes les régions
+    getRegions() {
+      this.service.getAllRegions().subscribe((data: any) => {
+        this.regions = data;
+      //  console.log("regions ", this.regions)
+      });
+    }
+  
+    // Obtenir toutes les délégations
+    getDelegations() {
+      this.service.getAllDelegations().subscribe((data: any) => {
+        this.delegations = data;
+      //  console.log("delegations ", this.delegations)
+      });
+    }
+  
+   
+  
+    onRegionChange(regionId: any) {
+     // console.log("Changement de région, région sélectionnée:", regionId);
+      
+      // Filtrer les délégations par région sélectionnée
+      this.filteredDelegations = this.delegations.filter((del: any) => {
+        return del.region_id == regionId;  // Vérifiez que 'region_id' est correct
+      });
+      
+      // Réinitialiser la sélection de la délégation
+      this.site.delegotion = '';
+   
+    //  console.log("Délégations filtrées:", this.filteredDelegations);
+    }
+
+    onDelegationChange(delegotionId: any) {
+     // console.log("Changement de délégation, délégation sélectionnée:", delegotionId);
+    
+      // Filtrer les sites par délégation sélectionnée
+      this.filteredSites = this.sites.filter((site: any) => {
+        return site.delegotion == delegotionId; // Filtrer les sites selon l'ID de la délégation
+      });
+
+     
+    
+     
+    }
+  getSites(){
+    this.siteService.getAllSites().subscribe((data: any) => {
+      this.sites = data;
+  //    console.log("sites ", this.sites)
+    });
+  
+  }
+
+  getFournisseurs() {
+    this.service.getFournisseurs().subscribe((data: any) => {
+      this.fournisseurs = data;
+     // console.log("++++++++++fournisseurs", this.fournisseurs)
+    });
+  }
 }
