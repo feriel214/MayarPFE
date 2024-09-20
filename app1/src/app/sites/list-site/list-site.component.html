@@ -59,7 +59,7 @@
             <div class="add-product">
               <a
                 class="Primary mg-b-10"
-                href="#"
+                routerLink="/admin/add/site"
                 style="background-color: #34baa1"
                 data-toggle="modal"
                 data-target="#PrimaryModalalert"
@@ -114,8 +114,11 @@
                     <td>{{ site.codesite }}</td>
                     <td>{{ site.nomsite }}</td>
                     <td>{{ site.region }}</td>
+                    <!-- Devrait afficher le nom de la région -->
                     <td>{{ site.delegotion }}</td>
+                    <!-- Devrait afficher le nom de la délégation -->
                     <td>{{ site.secteur }}</td>
+                    <!-- Devrait afficher le nom du secteur -->
                     <td>{{ site.x }}</td>
                     <td>{{ site.y }}</td>
                     <td>{{ site.fournisseur }}</td>
@@ -128,8 +131,6 @@
                         data-toggle="tooltip"
                         title="Modifier"
                         class="icon-button"
-                        data-toggle="modal"
-                        data-target="#EditSiteModal"
                         (click)="editSite(site)"
                       >
                         <i class="fa fa-pencil text-success"></i>

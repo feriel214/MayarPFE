@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AdminService } from 'src/app/service/admin.service';
 import { SiteService } from 'src/app/service/site.service';
 import Swal from 'sweetalert2';
 
@@ -10,7 +11,23 @@ import Swal from 'sweetalert2';
 })
 export class EditSiteComponent implements OnInit {
   codesite1: any;
-  data: any;
+  regions: any;
+  delegations: any;
+  secteurs: any;
+  filteredDelegations: any[] = [];
+  filteredSecteurs: any[] = [];
+  filteredFournisseurs: any[] = [];
+  fournisseurs: any;
+  access: string[] = [ 'Terrestre', 'Sécurisé', 'Restreint', 'Public', 'Privé'];
+
+// Alimentation pour le site GSM
+ alimentation: string[] = [
+    '48V',
+    'Solaire',
+    'Diesel',
+    'Lithium',
+    'AC'
+];
   site = {
     codesite: '',
     nomsite: '',
@@ -19,42 +36,74 @@ export class EditSiteComponent implements OnInit {
     secteur: '',
     x: 0,
     y: 0,
-    fournisseur: '',
+    fournisseur:'',
     HBA: '',
     antenne: '',
     alimentation: '',
     acces: ''
   };
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private siteService: SiteService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private siteService: SiteService,
+    private service: AdminService // To get regions, delegations, etc.
+  ) {
+   
+    
+  }
 
   ngOnInit(): void {
     this.codesite1 = this.route.snapshot.params['id'];
-    this.getById(this.codesite1);
 
-    console.log("code site ............",this.codesite1);
-    console.log("l objet ",this.site)
+    console.log("site à modifier : ",  this.codesite1 )
+    // Load necessary data
+    this.getRegions();
+    this.getDelegations();
+    this.getSecteurs();
+    this.getFournisseurs();
+    
+    // Get site data
+    this.getById();
   }
 
-  getById(id: any): void  {
+  // Get all regions, delegations, secteurs, and fournisseurs
+  getRegions() {
+    this.service.getAllRegions().subscribe((data: any) => {
+      this.regions = data;
+    });
+  }
+
+  getDelegations() {
+    this.service.getAllDelegations().subscribe((data: any) => {
+      this.delegations = data;
+     
+    });
+  }
+
+  getSecteurs() {
+    this.service.getSecteurs().subscribe((data: any) => {
+      this.secteurs = data;
+    });
+  }
+
+  getFournisseurs() {
+    this.service.getFournisseurs().subscribe((data: any) => {
+      this.fournisseurs = data;
+      console.log("++++++++++fournisseurs", this.fournisseurs)
+    });
+  }
+  getById(): void {
     this.siteService.getSiteById(this.codesite1).subscribe(res => {
-      // Map the response to site object properties
-      console.log("......... res mayar  ",res[0])
-      this.site.codesite = res[0].codesite;
-      this.site.nomsite = res[0].nomsite;
-      this.site.region = res[0].region;
-      this.site.delegotion = res[0].delegotion;
-      this.site.secteur = res[0].secteur;
-      this.site.x = res[0].x;
-      this.site.y = res[0].y;
-      this.site.fournisseur = res[0].fournisseur;
-      this.site.HBA = res[0].HBA;
-      this.site.antenne = res[0].antenne;
-      this.site.alimentation = res[0].alimentation;
-      this.site.acces = res[0].acces;
-   
+      const siteData = res[0];
+      Object.assign(this.site, siteData);
+  
+     
+    console.log("site",this.site)
+     
+    
+      this.onRegionChange(this.site.region);
+      this.onDelegationChange(this.site.delegotion);
     }, error => {
       console.error('Error fetching site data:', error);
       Swal.fire({
@@ -64,17 +113,35 @@ export class EditSiteComponent implements OnInit {
       });
     });
   }
+  
+  
+  // Filter delegations based on selected region
+  onRegionChange(regionId: any) {
+    console.log("--------- regionId",regionId)
+    this.filteredDelegations = this.delegations.filter((del : any) => del.region_id == regionId);
+    
+    // Reset delegation and sector selections
+   // this.site.delegotion = '';
+    this.filteredSecteurs = [];
+  }
 
+
+  // Filter sectors based on selected delegation
+  onDelegationChange(delegationId: any) {
+  
+    this.filteredSecteurs = this.secteurs.filter((sec : any) => sec.delegation_id == delegationId);
+    
+  }
+
+  // Update the site
   updateSite() {
     this.siteService.updateSite(this.codesite1, this.site).subscribe(res => {
-      
-      this.refresh();
-      this.router.navigate(['/listSite']);
       Swal.fire({
         icon: 'success',
         title: 'Success!',
         text: 'Site updated successfully!',
       });
+      this.router.navigate(['/listSite']);
     }, error => {
       console.error('Error updating site:', error);
       Swal.fire({
@@ -84,31 +151,9 @@ export class EditSiteComponent implements OnInit {
       });
     });
   }
-  
-  refresh(){
-    this.site = {
-      codesite: '',
-      nomsite: '',
-      region: '',
-      delegotion: '',
-      secteur: '',
-      x: 0,
-      y: 0,
-      fournisseur: '',
-      HBA: '',
-      antenne: '',
-      alimentation: '',
-      acces: ''
-    };
-  
+
+  // Navigate back to the site list
+  backSite() {
+    this.router.navigate(['/admin/list/sites']);
   }
-
-
-  backSite(){
-  
-    this.router.navigate(['/home/listSite']);
-
-  }
-
-
 }

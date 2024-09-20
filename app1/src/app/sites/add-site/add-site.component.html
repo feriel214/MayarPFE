@@ -1,204 +1,346 @@
-
-
 <!--- here testing code -->
-<div class="breadcome-area" style="margin-top:6%;height: 70px;" >
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="breadcome-list single-page-breadcome">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="breadcome-heading">
-                                <form role="search" class="sr-input-func">
-                                    <input type="text" placeholder="Search..." class="search-int form-control">
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <ul class="breadcome-menu">
-                               
-                                <li><span class="bread-blod">Acceuil / Ajouter Site</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+<div class="breadcome-area" style="margin-top: 6%; height: 70px">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="breadcome-list single-page-breadcome">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <div class="breadcome-heading">
+                <form role="search" class="sr-input-func">
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    class="search-int form-control"
+                  />
+                  <a href="#"><i class="fa fa-search"></i></a>
+                </form>
+              </div>
             </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <ul class="breadcome-menu">
+                <li><span class="bread-blod">Acceuil / Ajouter Site</span></li>
+              </ul>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
-
 
 <!-- Single pro tab review Start-->
 <div class="single-pro-review-area mt-t-30 mg-b-15">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="product-payment-inner-st">
-                   
-                    <div id="myTabContent" class="tab-content custom-product-edit">
-                        <div class="product-tab-list tab-pane fade active in" id="description">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="review-content-section">
-                                        <div id="dropzone1" class="pro-ad">
-                                          <!-- form-->
-                                          <div class="form-group col-lg-4">
-                                            <label>CodeSite</label>
-                                            <input  [ngModelOptions]="{standalone: true}" [(ngModel)]="site.codesite" class="form-control">
-                                        </div>
-                                        <div class="form-group col-lg-4">
-                                            <label>NomSite</label>
-                                            <input [ngModelOptions]="{standalone: true}"  [(ngModel)]="site.nomsite" class="form-control">
-                                        </div>
-                                        <div class="form-group col-lg-4">
-                                            <label>Région</label>
-                                            <select [ngModelOptions]="{standalone: true}"  [(ngModel)]="site.region" class="form-control">
-                                                <option value="region1">Région 1</option>
-                                                <option value="region2">Région 2</option>
-                                                <option value="region3">Région 3</option>
-                                                <!-- Ajoutez d'autres options au besoin -->
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-lg-4">
-                                            <label>Delegotion</label>
-                                            <select  [ngModelOptions]="{standalone: true}" [(ngModel)]="site.delegotion" class="form-control">
-                                                <option value="delegotion1">Delegotion 1</option>
-                                                <option value="delegotion2">Delegotion 2</option>
-                                                <option value="delegotion3">Delegotion 3</option>
-                                                <!-- Ajoutez d'autres options au besoin -->
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-lg-4">
-                                            <label>Secteur</label>
-                                            <select  [ngModelOptions]="{standalone: true}" [(ngModel)]="site.secteur" class="form-control">
-                                                <option value="secteur1">Secteur 1</option>
-                                                <option value="secteur2">Secteur 2</option>
-                                                <option value="secteur3">Secteur 3</option>
-                                                <!-- Ajoutez d'autres options au besoin -->
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-lg-4">
-                                            <label>X</label>
-                                            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="site.x" type="number" class="form-control">
-                                        </div>
-                                        <div class="form-group col-lg-4">
-                                            <label>Y</label>
-                                            <input [ngModelOptions]="{standalone: true}"  [(ngModel)]="site.y" type="number" class="form-control">
-                                        </div>
-                                        <div class="form-group col-lg-4">
-                                            <label>Fournisseur</label>
-                                            <select [ngModelOptions]="{standalone: true}"  [(ngModel)]="site.fournisseur" class="form-control">
-                                                <option value="fournisseur1">HW</option>
-                                                <option value="fournisseur2">ER</option>
-                                                <!-- Ajoutez d'autres options au besoin -->
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-lg-4">
-                                            <label>HBA</label>
-                                            <input  [ngModelOptions]="{standalone: true}" [(ngModel)]="site.HBA" class="form-control">
-                                        </div>
-                                        <div class="form-group col-lg-4">
-                                            <label>Antenne</label>
-                                            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="site.antenne" class="form-control">
-                                        </div>
-                                        <div class="form-group col-lg-4">
-                                            <label>Alimentation</label>
-                                            <select  [ngModelOptions]="{standalone: true}"  [ngModelOptions]="{standalone: true}" [(ngModel)]="site.alimentation" class="form-control">
-                                                <option value="alimentation1">Alimentation 1</option>
-                                                <option value="alimentation2">Alimentation 2</option>
-                                                <option value="alimentation3">Alimentation 3</option>
-                                                <!-- Ajoutez d'autres options au besoin -->
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-lg-4">
-                                            <label>Accés</label>
-                                            <select  [ngModelOptions]="{standalone: true}" [(ngModel)]="site.acces" class="form-control">
-                                                <option value="acces1">Accés 1</option>
-                                                <option value="acces2">Accés 2</option>
-                                                <!-- Ajoutez d'autres options au besoin -->
-                                            </select>
-                                        </div>
-                                        <div class="ButtonStyle">
-                                            <button class="btn btn-success myBtn" (click)="AddSite()">Enregistrer</button>
-                                            <button class="btn btn-danger myBtn" routerLink="/home/listSite" >Annuler</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-tab-list tab-pane fade" id="reviews">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="review-content-section">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="devit-card-custom">
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" placeholder="Email">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="number" class="form-control" placeholder="Phone">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="password" class="form-control" placeholder="Password">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="password" class="form-control" placeholder="Confirm Password">
-                                                    </div>
-                                                    <a href="#!" class="btn btn-primary waves-effect waves-light">Submit</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-tab-list tab-pane fade" id="INFORMATION">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="review-content-section">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="devit-card-custom">
-                                                    <div class="form-group">
-                                                        <input type="url" class="form-control" placeholder="Facebook URL">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="url" class="form-control" placeholder="Twitter URL">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="url" class="form-control" placeholder="Google Plus">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="url" class="form-control" placeholder="Linkedin URL">
-                                                    </div>
-                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="product-payment-inner-st">
+          <div id="myTabContent" class="tab-content custom-product-edit">
+            <div
+              class="product-tab-list tab-pane fade active in"
+              id="description"
+            >
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="review-content-section">
+                    <div id="dropzone1" class="pro-ad">
+                      <!-- form-->
+                      <div class="form-group col-lg-4">
+                        <label>CodeSite</label>
+                        <input
+                          [ngModelOptions]="{ standalone: true }"
+                          [(ngModel)]="site.codesite"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="form-group col-lg-4">
+                        <label>NomSite</label>
+                        <input
+                          [ngModelOptions]="{ standalone: true }"
+                          [(ngModel)]="site.nomsite"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="form-group col-lg-4">
+                        <label>Région</label>
+                        <select
+                          [ngModelOptions]="{ standalone: true }"
+                          [(ngModel)]="site.region"
+                          class="form-control"
+                          (change)="onRegionChange(site.region)"
+                        >
+                          <option
+                            [value]="reg.idReg"
+                            *ngFor="let reg of regions"
+                          >
+                            {{ reg.libelleReg }}
+                          </option>
+                        </select>
+                      </div>
+
+                      <div class="form-group col-lg-4">
+                        <label>Delegation</label>
+
+                        <select
+                          [ngModelOptions]="{ standalone: true }"
+                          [(ngModel)]="site.delegotion"
+                          class="form-control"
+                          (change)="onDelegationChange(site.delegotion)"
+                        >
+                          <option
+                            [value]="del.idDel"
+                            *ngFor="let del of filteredDelegations"
+                          >
+                            {{ del.libelleDel }}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="form-group col-lg-4">
+                        <label>Secteur</label>
+                        <select
+                          [ngModelOptions]="{ standalone: true }"
+                          [(ngModel)]="site.secteur"
+                          class="form-control"
+                        >
+                          <option
+                            [value]="sec.idSecteur"
+                            *ngFor="let sec of filteredSecteurs"
+                          >
+                            {{ sec.libelleSec }}
+                          </option>
+                        </select>
+                      </div>
+
+                      <!-- <div class="form-group col-lg-4">
+                        <label>Secteur</label>
+                        <select
+                          [ngModelOptions]="{ standalone: true }"
+                          [(ngModel)]="site.secteur"
+                          class="form-control"
+                        >
+                          <option
+                            [value]="sec.idSecteur"
+                            *ngFor="let sec of filteredSecteurs"
+                          >
+                            {{ sec.libelleSec }}
+                          </option>
+                        </select>
+                      </div> -->
+
+                      <div class="form-group col-lg-4">
+                        <label>X</label>
+                        <input
+                          [ngModelOptions]="{ standalone: true }"
+                          [(ngModel)]="site.x"
+                          type="number"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="form-group col-lg-4">
+                        <label>Y</label>
+                        <input
+                          [ngModelOptions]="{ standalone: true }"
+                          [(ngModel)]="site.y"
+                          type="number"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="form-group col-lg-4">
+                        <label>Fournisseur</label>
+                        <select
+                          [ngModelOptions]="{ standalone: true }"
+                          [(ngModel)]="site.fournisseur"
+                          class="form-control"
+                        >
+                          <option
+                            [value]="four.idFourn"
+                            *ngFor="let four of fournisseurs"
+                          >
+                            {{ four.nomFournisseur }}
+                          </option>
+
+                          <!-- Ajoutez d'autres options au besoin -->
+                        </select>
+                      </div>
+                      <div class="form-group col-lg-4">
+                        <label>HBA</label>
+                        <input
+                          [ngModelOptions]="{ standalone: true }"
+                          [(ngModel)]="site.HBA"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="form-group col-lg-4">
+                        <label>Antenne</label>
+                        <input
+                          [ngModelOptions]="{ standalone: true }"
+                          [(ngModel)]="site.antenne"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="form-group col-lg-4">
+                        <label>Alimentation</label>
+                        <select
+                          [ngModelOptions]="{ standalone: true }"
+                          [(ngModel)]="site.alimentation"
+                          class="form-control"
+                        >
+                          <option
+                            *ngFor="let aliment of alimentation"
+                            [value]="aliment"
+                          >
+                            {{ aliment }}
+                          </option>
+                        </select>
+                      </div>
+
+                      <div class="form-group col-lg-4">
+                        <label>Accès</label>
+                        <select
+                          [ngModelOptions]="{ standalone: true }"
+                          [(ngModel)]="site.acces"
+                          class="form-control"
+                        >
+                          <option
+                            *ngFor="let access of access"
+                            [value]="access"
+                          >
+                            {{ access }}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="ButtonStyle">
+                        <button
+                          class="btn btn-success myBtn"
+                          (click)="AddSite()"
+                        >
+                          Enregistrer
+                        </button>
+                        <button
+                          class="btn btn-danger myBtn"
+                          routerLink="/admin/list/sites"
+                        >
+                          Annuler
+                        </button>
+                      </div>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
+            <div class="product-tab-list tab-pane fade" id="reviews">
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="review-content-section">
+                    <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="devit-card-custom">
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Email"
+                            />
+                          </div>
+                          <div class="form-group">
+                            <input
+                              type="number"
+                              class="form-control"
+                              placeholder="Phone"
+                            />
+                          </div>
+                          <div class="form-group">
+                            <input
+                              type="password"
+                              class="form-control"
+                              placeholder="Password"
+                            />
+                          </div>
+                          <div class="form-group">
+                            <input
+                              type="password"
+                              class="form-control"
+                              placeholder="Confirm Password"
+                            />
+                          </div>
+                          <a
+                            href="#!"
+                            class="btn btn-primary waves-effect waves-light"
+                            >Submit</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="product-tab-list tab-pane fade" id="INFORMATION">
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="review-content-section">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="devit-card-custom">
+                          <div class="form-group">
+                            <input
+                              type="url"
+                              class="form-control"
+                              placeholder="Facebook URL"
+                            />
+                          </div>
+                          <div class="form-group">
+                            <input
+                              type="url"
+                              class="form-control"
+                              placeholder="Twitter URL"
+                            />
+                          </div>
+                          <div class="form-group">
+                            <input
+                              type="url"
+                              class="form-control"
+                              placeholder="Google Plus"
+                            />
+                          </div>
+                          <div class="form-group">
+                            <input
+                              type="url"
+                              class="form-control"
+                              placeholder="Linkedin URL"
+                            />
+                          </div>
+                          <button
+                            type="submit"
+                            class="btn btn-primary waves-effect waves-light"
+                          >
+                            Submit
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
-
 <div class="footer-copyright-area">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="footer-copy-right">
-                    <p>Copyright © 2018. All rights reserved. Template by <a href="https://colorlib.com/wp/templates/">Colorlib</a></p>
-                </div>
-            </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="footer-copy-right">
+          <p>
+            Copyright © 2018. All rights reserved. Template by
+            <a href="https://colorlib.com/wp/templates/">Colorlib</a>
+          </p>
         </div>
+      </div>
     </div>
+  </div>
 </div>

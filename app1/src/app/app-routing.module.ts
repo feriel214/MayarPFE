@@ -23,6 +23,8 @@ import { DashboardAdminComponent } from './admin/dashboard-admin/dashboard-admin
 import { DashboardIngRadioComponent } from './dashboard-ing-radio/dashboard-ing-radio.component';
 import { DashboardFinancierComponent } from './dashboard-financier/dashboard-financier.component';
 import { DashboardManagerComponent } from './dashboard-manager/dashboard-manager.component';
+import { AddSiteComponent } from './sites/add-site/add-site.component';
+import { EditSiteComponent } from './sites/edit-site/edit-site.component';
 
 
 
@@ -36,6 +38,8 @@ const routes: Routes = [
   { path:'admin',component: DashboardAdminComponent ,
     children:[
       {path:'list/sites',component:ListSiteComponent},
+      {path:'add/site',component:AddSiteComponent},
+      {path:'edit/site/:id',component:EditSiteComponent},
       { path:'list/regions',component:RegionsComponent},
       { path:'list/delegations',component:DelegationsComponent},
       { path:'list/users',component:UsersComponent},
