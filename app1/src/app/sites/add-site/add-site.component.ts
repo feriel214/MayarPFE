@@ -50,38 +50,57 @@ export class AddSiteComponent implements OnInit {
     this.getFournisseurs();
   }
 
+
+ 
+  
   AddSite() {
     console.log("site", this.site);
+    
     this.siteService.storeSite(this.site)
-      .subscribe((res: any) => {
-        this.site = {
-          codesite: '',
-          nomsite: '',
-          region: '',
-          delegotion: '',
-          secteur: '',
-          x: 0,
-          y: 0,
-          fournisseur: '',
-          HBA: '',
-          antenne: '',
-          alimentation: '',
-          acces: ''
-        };
-
-        this.router.navigate(['/listSite']);
-
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Site ajouté avec succès !",
-          showConfirmButton: false,
-          timer: 1500
-        });
-      });
+      .subscribe(
+        (res: any) => {
+          // Réinitialiser les champs du formulaire après ajout du site
+          this.site = {
+            codesite: '',
+            nomsite: '',
+            region: '',
+            delegotion: '',
+            secteur: '',
+            x: 0,
+            y: 0,
+            fournisseur: '',
+            HBA: '',
+            antenne: '',
+            alimentation: '',
+            acces: ''
+          };
+  
+          // Rediriger vers la liste des sites après succès
+          this.router.navigate(['/listSite']);
+  
+          // Afficher une alerte de succès
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Site ajouté avec succès !",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        },
+        (error: any) => {
+          console.error("Erreur lors de l'ajout du site:", error);
+  
+          // Afficher une alerte d'erreur en français
+          Swal.fire({
+            icon: "error",
+            title: "Erreur",
+            text: "Impossible d'ajouter le site. Veuillez vérifier les informations et réessayer.",
+            confirmButtonText: "OK"
+          });
+        }
+      );
   }
-
-  // Obtenir toutes les régions
+  
   getRegions() {
     this.service.getAllRegions().subscribe((data: any) => {
       this.regions = data;

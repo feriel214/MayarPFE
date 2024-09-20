@@ -54,16 +54,34 @@ export class SecteursComponent implements OnInit {
   addSecteur(): void {
     this.secteurService.createSecteur(this.newSecteur).subscribe(
       (secteur: Secteur) => {
+        // Ajouter le nouveau secteur à la liste et réinitialiser le formulaire
         this.secteurs.push(secteur);
         this.newSecteur = { codeSec: '', libelleSec: '', delegation_id: 0 };
         this.getSecteurs();
-        this.showSuccessMessage('Secteur ajouté avec succès!');
+        
+        // Afficher une notification de succès
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Secteur ajouté avec succès !",
+          showConfirmButton: false,
+          timer: 1500
+        });
       },
       (error) => {
-        console.error('Error adding secteur', error);
+        console.error('Erreur lors de l\'ajout du secteur', error);
+        
+        // Afficher une notification d'erreur
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur',
+          text: "Une erreur s'est produite lors de l'ajout du secteur. Veuillez réessayer.",
+          confirmButtonText: 'OK'
+        });
       }
     );
   }
+  
 
   // Set the data for the secteur to be edited
   editSecteur(secteur: Secteur): void {

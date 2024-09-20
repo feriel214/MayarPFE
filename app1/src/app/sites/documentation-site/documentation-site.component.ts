@@ -95,35 +95,67 @@ export class DocumentationSiteComponent {
 
  
 
+  // ajouterArchive(): void {
+  //   // Prepare form data
+  //   const formData = new FormData();
+  //   formData.append('ficheMisService', this.expertiseFile|| '');
+  //   formData.append('APD', this.apdFile || '');
+  //   formData.append('ficheExp', this.fvrFile || '');
+
+  //   // Send the form data to the server with codesite as a query parameter
+  //   this.siteService.storearchive(this.selectedSiteCode, formData).subscribe(
+  //     (response: any) => {
+  //       console.log('Archive added successfully:', response);
+  //       // Handle success
+  //       Swal.fire({
+  //         position: "top-end",
+  //         icon: "success",
+  //         title: "Archive  ajoutée avec succées ! ",
+  //         showConfirmButton: false,
+  //         timer: 1500
+  //       });
+        
+  //     },
+  //     (error: any) => {
+  //       console.error('Error adding archive:', error);
+  //       // Handle error
+  //     }
+  //   );
+  // }
+
   ajouterArchive(): void {
-    // Prepare form data
+    // Préparer les données du formulaire
     const formData = new FormData();
-    formData.append('ficheMisService', this.expertiseFile|| '');
+    formData.append('ficheMisService', this.expertiseFile || '');
     formData.append('APD', this.apdFile || '');
     formData.append('ficheExp', this.fvrFile || '');
-
-    // Send the form data to the server with codesite as a query parameter
+  
+    // Envoyer les données du formulaire au serveur avec le codesite en paramètre de requête
     this.siteService.storearchive(this.selectedSiteCode, formData).subscribe(
       (response: any) => {
-        console.log('Archive added successfully:', response);
-        // Handle success
+        console.log('Archive ajoutée avec succès:', response);
+        // Gérer le succès
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Archive  ajoutée avec succées ! ",
+          title: "Archive ajoutée avec succès !",
           showConfirmButton: false,
           timer: 1500
         });
-        
       },
       (error: any) => {
-        console.error('Error adding archive:', error);
-        // Handle error
+        console.error('Erreur lors de l\'ajout de l\'archive:', error);
+        // Gérer l'erreur avec un Swal
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur',
+          text: "Une erreur s'est produite lors de l'ajout de l'archive. Veuillez vérifier les fichiers et réessayer.",
+          confirmButtonText: 'OK'
+        });
       }
     );
   }
-
-
+  
 
 
   annuler(): void {

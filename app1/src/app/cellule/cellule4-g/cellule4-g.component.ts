@@ -148,29 +148,45 @@ onRegionChange(regionId: any) {
 
   storeCellule() {
     console.log("cellule", this.cellule);
-    this.siteService.storeCel4G(this.selectedidSite, this.cellule).subscribe((res: any) => {
-      this.cellule = {
-        codeCellule: '',
-        nomCellule: '',
-        EnodB: '',
-        tac: '',
-        sc: '',
-        power: '',
-        mlt: '',
-        azimuth: '',
-        bande: 0,
-      };
-
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Cellulle4G ajoutée avec succès!",
-        showConfirmButton: false,
-        timer: 1500
-      });
-    });
+  
+    this.siteService.storeCel4G(this.selectedidSite, this.cellule).subscribe(
+      (res: any) => {
+        // Réinitialiser les champs de la cellule après succès
+        this.cellule = {
+          codeCellule: '',
+          nomCellule: '',
+          EnodB: '',
+          tac: '',
+          sc: '',
+          power: '',
+          mlt: '',
+          azimuth: '',
+          bande: 0,
+        };
+  
+        // Afficher une notification de succès
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Cellule 4G ajoutée avec succès !",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      },
+      (error: any) => {
+        console.error("Erreur lors de l'ajout de la cellule 4G:", error);
+  
+        // Afficher une notification d'erreur
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur',
+          text: "Une erreur s'est produite lors de l'ajout de la cellule 4G. Veuillez réessayer.",
+          confirmButtonText: 'OK'
+        });
+      }
+    );
   }
-
+  
   updateData() {
     this.siteService.getidBycode4G(this.newcellule.codeCellule).subscribe(
       (response: any) => {

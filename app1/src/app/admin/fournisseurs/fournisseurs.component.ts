@@ -42,18 +42,47 @@ export class FournisseursComponent implements OnInit {
 
   // Add a new fournisseur
   addFournisseur(): void {
+    // Vérification si les champs de newFournisseur sont vides
+    if (!this.newFournisseur.codeFourn || !this.newFournisseur.nomFournisseur) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erreur',
+        text: 'Veuillez remplir tous les champs du fournisseur avant de soumettre.',
+        confirmButtonText: 'OK'
+      });
+      return; // Arrête la fonction si les champs sont vides
+    }
+  
     this.fournisseurService.addFournisseur(this.newFournisseur).subscribe(
       (fournisseur: Fournisseur) => {
+        // Ajouter le fournisseur à la liste et réinitialiser le formulaire
         this.fournisseurs.push(fournisseur);
         this.newFournisseur = { codeFourn: '', nomFournisseur: '' };
         this.getFournisseurs();
-        this.showSuccessMessage('Fournisseur ajouté avec succès!');
+  
+        // Afficher un message de succès
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Fournisseur ajouté avec succès !",
+          showConfirmButton: false,
+          timer: 1500
+        });
       },
       (error) => {
-        console.error('Error adding fournisseur', error);
+        console.error('Erreur lors de l\'ajout du fournisseur', error);
+  
+        // Afficher une notification d'erreur
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur',
+          text: "Une erreur s'est produite lors de l'ajout du fournisseur. Veuillez réessayer.",
+          confirmButtonText: 'OK'
+        });
       }
     );
   }
+  
 
   // Set the data for the fournisseur to be edited
   editFournisseur(fournisseur: Fournisseur): void {

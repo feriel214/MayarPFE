@@ -192,42 +192,84 @@ handleAPDFileInput(event: any): void {
   console.log("file ",this.contractFile)
 }
 
-  ajouterfinance(): void {
-    // Prepare form data
-    const formData = new FormData();
+  // ajouterfinance(): void {
+  //   // Prepare form data
+  //   const formData = new FormData();
     
-    if (this.contractFile) {
-      formData.append('contract', this.contractFile);
-    }
-    formData.append('propritere', this.proprietaire );
-    formData.append('montant', this.montant);
-    formData.append('datecontract',  this.formattedDateContract );
-    formData.append('datemaj',   this.formattedDateMAJ);
-    console.log('hello mayarrrrrrrrrr');
-    formData.forEach((value, key) => {
-      console.log(`${key}: ${value}`);
-    });
-    // Send the form data to the server with codesite as a query parameter
-    this.siteService.storefinance(   this.selectedSiteCode,formData ).subscribe(
-      (response: any) => {
-        console.log('Archive added successfully:', response);
-        // Handle success        
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Document  ajoutée avec succées ! ",
-          showConfirmButton: false,
-          timer: 1500
-        });
-      },
-      (error: any) => {
-        console.error('Error adding archive:', error);
-        // Handle error
-      }
-    );
-  }
+  //   if (this.contractFile) {
+  //     formData.append('contract', this.contractFile);
+  //   }
+  //   formData.append('propritere', this.proprietaire );
+  //   formData.append('montant', this.montant);
+  //   formData.append('datecontract',  this.formattedDateContract );
+  //   formData.append('datemaj',   this.formattedDateMAJ);
+  //   console.log('hello mayarrrrrrrrrr');
+  //   formData.forEach((value, key) => {
+  //     console.log(`${key}: ${value}`);
+  //   });
+  //   // Send the form data to the server with codesite as a query parameter
+  //   this.siteService.storefinance(   this.selectedSiteCode,formData ).subscribe(
+  //     (response: any) => {
+  //       console.log('Archive added successfully:', response);
+  //       // Handle success        
+  //       Swal.fire({
+  //         position: "top-end",
+  //         icon: "success",
+  //         title: "Document  ajoutée avec succées ! ",
+  //         showConfirmButton: false,
+  //         timer: 1500
+  //       });
+  //     },
+  //     (error: any) => {
+  //       console.error('Error adding archive:', error);
+  //       // Handle error
+  //     }
+  //   );
+  // }
 /////////////////////////update part 
 
+ajouterfinance(): void {
+  // Préparer les données du formulaire
+  const formData = new FormData();
+  
+  if (this.contractFile) {
+    formData.append('contract', this.contractFile);
+  }
+  formData.append('propritere', this.proprietaire);
+  formData.append('montant', this.montant);
+  formData.append('datecontract', this.formattedDateContract);
+  formData.append('datemaj', this.formattedDateMAJ);
+  
+  console.log('hello mayarrrrrrrrrr');
+  formData.forEach((value, key) => {
+    console.log(`${key}: ${value}`);
+  });
+
+  // Envoyer les données du formulaire au serveur avec le codesite en paramètre de requête
+  this.siteService.storefinance(this.selectedSiteCode, formData).subscribe(
+    (response: any) => {
+      console.log('Document financier ajouté avec succès:', response);
+      // Gérer le succès        
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Document ajouté avec succès !",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    },
+    (error: any) => {
+      console.error('Erreur lors de l\'ajout du document financier:', error);
+      // Gérer l'erreur avec un Swal
+      Swal.fire({
+        icon: 'error',
+        title: 'Erreur',
+        text: "Une erreur s'est produite lors de l'ajout du document financier. Veuillez réessayer.",
+        confirmButtonText: 'OK'
+      });
+    }
+  );
+}
 
 handleAPDFileInputnew(event: any): void {
   this.contractFilenew = event.target.files[0];
